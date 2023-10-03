@@ -1,38 +1,26 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Signin, Profile, Error404} from './pages/index';
 
-const Home = () => {
-  return (
-    <div>
-      <h2>Página de home</h2>
-    </div>
-  )
+const companyName = "MONISA"
+
+export const useUpdatePageTitle = (pageTitle) => {
+  useEffect(() => {
+    document.title = `${companyName} | ${pageTitle}`
+  }, [pageTitle])
 }
 
-const About = () => {
+const App = () => {
   return (
-    <div>
-      <h2>Página de about</h2>
-    </div>
-  )
-}
-
-const NotFound = () => {
-  return (
-    <div>
-      <h2>Error 404</h2>
-    </div>
-  )
-}
-
-export default function App() {
-  return (
-    <Router>
+    <Router basename="/">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/:username" element={<Profile />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
   )
 }
+
+export default App
