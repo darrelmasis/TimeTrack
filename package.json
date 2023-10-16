@@ -2,11 +2,13 @@
   "name": "monisa_nomina",
   "version": "0.1.0",
   "description": "Aplicación web para gestionar las horas extras de los empleados de MONISA",
-  "main": "server/index.js",
+  "main": "./server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "cd ./server && node index.js"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "keywords": [],
   "author": "Darel Masis",
