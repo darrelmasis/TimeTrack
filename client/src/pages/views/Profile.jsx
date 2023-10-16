@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useUpdatePageTitle } from "../../App"
 import { Header } from "../../components/organisms/header"
-import Icon from "../../components/commons/icons"
+import { Icon } from "../../components/commons/icons"
 import { TimeRegister } from "../../components/organisms/TimeRegister"
 import { Button } from "../../components/atoms/Button"
 import { Modal } from "../../components/organisms/Modal"
@@ -25,7 +25,7 @@ const Profile = () => {
   const [idToDelete, setIdToDelete] = useState(null);
 
   const modalRef = useRef(null)
-  
+
   const openModal = (id) => {
     setIsModalShow(true)
     setIdToDelete(id);
@@ -59,7 +59,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <CSSTransition nodeRef={modalRef} in={isModalShow} timeout={300} classNames="open" unmountOnExit>
         <Modal transitionRef={modalRef} isShow={isModalShow} closeModal={closeModal} confirmAction={handleModalConfirmation} title="Confirmación">¿Estás seguro de que deseas eliminar este registro?</Modal>
       </CSSTransition>
