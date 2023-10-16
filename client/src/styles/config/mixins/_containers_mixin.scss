@@ -1,0 +1,33 @@
+@mixin container-base($gutter: $container-padding-x) {
+  --gutter-x: #{$gutter};
+  width: 100%;
+  padding-left: calc(var(--gutter-x) / 2);
+  padding-right: calc(var(--gutter-x) / 2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@mixin container {
+
+  @include screen(min, sm) {
+    max-width: map-get($containers, sm);
+  }
+
+  @include screen(min, md) {
+    max-width: map-get($containers, md);
+  }
+
+  @include screen(min, lg) {
+    max-width: map-get($containers, lg);
+  }
+
+  @include screen(min, xl) {
+    max-width: map-get($containers, xl);
+  }
+
+  @include screen(min, xxl) {
+    max-width: map-get($containers, xxl);
+  }
+
+}

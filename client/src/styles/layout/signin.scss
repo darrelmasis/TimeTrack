@@ -1,0 +1,43 @@
+
+
+@media (min-width: 768px) {
+    .signin-screen {
+      display: flex; 
+      justify-content: center;
+      padding: 4rem;
+      max-width: 450px;
+      margin: auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+  #signin-form {
+
+    .form-control, [type=submit] {
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+  }
+}
+
+
+.main-screen {
+  height: 100vh;
+  width: 100vw;
+}
+
+.password-state {
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    bottom: calc(50% - 7px);
+    right: 1rem;
+  }
+}
+
+

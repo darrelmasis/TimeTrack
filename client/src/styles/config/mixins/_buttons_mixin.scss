@@ -1,0 +1,46 @@
+// Variantes de color
+@mixin button-variant($bg-color, $color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 7%), $active-bg-color: darken($bg-color, 10%)){
+  --btn-bg: #{$bg-color};
+  --btn-color: #{$color};
+  --btn-hover-bg: #{$hover-bg-color};
+  --btn-active-bg: #{$active-bg-color};
+}
+
+// Variantes de color pero en los botonoes Ghost
+@mixin button-ghost-variant($bg-color, $color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 5%), $active-bg-color: darken($bg-color, 3%)){
+  --btn-border: 1px solid #{$bg-color};
+  --btn-color: #{$bg-color};
+  
+  &:hover {
+    --btn-color: #{$color};
+    --btn-hover-bg: #{$bg-color};
+  }
+
+  &:active {
+    --btn-active-bg: #{$active-bg-color};
+  }
+}
+
+
+@mixin button-text-variant($color){
+  --btn-bg: transparent;
+  --btn-hover-bg: transparent;
+  --btn-active-bg: transparent;
+}
+
+@mixin button-link($color, $hover-color: darken($color, 10%)) {
+  --btn-color: #{$color};
+  --btn-hover-bg: none;
+  --btn-active-bg: none;
+  &:hover {
+    --btn-text-decoration: underline;
+    --btn-color: #{$hover-color};
+  }
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size, $height, $line-height) {
+  --btn-padding: $padding-y $padding-x;
+  --btn-font-size: $font-size;
+  --btn-height: $height;
+  --btn-line-height: $line-height;
+}

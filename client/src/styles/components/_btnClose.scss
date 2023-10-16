@@ -1,0 +1,33 @@
+@import "./timeRegister";
+
+.btn-close {
+  width: 2rem;
+  height: 2rem;
+  color: $body-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &:hover {
+    background-color: lighten( $border-color, 20%);
+    color: darken($body-color, $amount: 10);
+  }
+
+  &:active {
+    background-color: $border-color!important;
+    color: $body-color!important;
+  }
+
+  & > .btn:active .btn:focus {
+    border: none;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .btn-close {
+    // transform: scale(0);
+    transform-origin: center center;
+  }
+}
+

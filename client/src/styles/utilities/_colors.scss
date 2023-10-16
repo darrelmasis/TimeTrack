@@ -1,0 +1,41 @@
+$text-colors-light: (
+  "primary":      $primary,
+  "secondary":    $secondary,
+  "danger":       $danger,
+  "warning":      $warning,
+  "success":      $success,
+  "white":        $white,
+  "light":        $light,
+  "dark":         $dark,
+  "muted":        $muted
+);
+
+$text-colors-dark: (
+  "primary":      $primary-alt,
+  "secondary":    $secondary-alt,
+  "danger":       $danger-alt,
+  "warning":      $warning-alt,
+  "success":      $success-alt,
+  "white":        $secondary-alt,
+  "light":        $light-alt,
+  "dark":         $dark-alt,
+  "muted":        $muted-alt
+);
+
+
+@each $colors, $value in $text-colors-light {
+  .text-#{$colors} {
+    --text-#{$colors}: #{$value};
+
+    color: var(--text-#{$colors});
+  }
+}
+
+@each $colors, $value in $text-colors-dark {
+  body.dark .text-#{$colors} {
+    --text-#{$colors}: #{$value};
+
+    color: var(--text-#{$colors});
+
+  }
+} 

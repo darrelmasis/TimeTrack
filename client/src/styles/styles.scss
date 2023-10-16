@@ -1,1 +1,32 @@
-@import "./vendors/bootstrap";
+@import "./config/variables";
+@import "./config/functions";
+@import "./config/mixins";
+@import "./base/root";
+@import "./base/reboot";
+@import "./base/base";
+@import "./base/typography";
+
+// Componentes
+@import "./components/icons";
+@import "./components/buttons";
+@import "./components/avatar";
+@import "./components/navbar";
+@import "./components/dropdown";
+@import "./components/switch";
+
+// Layout
+@import "./layout/containers";
+@import "./layout/grid";
+
+// Hacks
+@import "./hacks/hacks";
+
+//Utilities
+@import "./utilities/backgrounds";
+@import "./utilities/spacers";
+@import "./utilities/colors";
+@import "./utilities/borders";
+@import "./utilities/utils";
+@import "./utilities/shadows";
+
+

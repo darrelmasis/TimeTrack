@@ -1,0 +1,36 @@
+
+.time-register {
+  background-color: $white;
+  transition: background-color .3s ease;
+
+  &:hover {
+    background-color: darken($white, 1%);
+    // cursor: pointer;
+
+    & .btn-close {
+      transform: scale(1);
+      transform-origin: center center;
+    }
+  }
+
+}
+
+.day {
+  margin-right: .5rem;
+}
+
+@media (max-width:767px) {
+  .time-register > div {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+}
+@media (min-width:768px) {
+  .day {
+    margin-right: 0;
+    font-size: .7em;
+  }
+  .date {
+    font-size: calc(1rem * 1.25);
+  }
+}

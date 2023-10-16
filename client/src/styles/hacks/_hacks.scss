@@ -1,0 +1,99 @@
+.header-button {
+  min-width: 10rem;
+  max-width: 10rem;
+
+  &-text {
+    // flex-grow: 1;
+    overflow: hidden;
+    width: 4.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.job-title {
+  max-width: 9.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.items-options-button {
+  grid-row-start: 1;
+  grid-column-start: 12;
+}
+
+// Iconos de la ornada de entrada y salida
+
+@include screen(min, lg) {
+  .job-time-icon {
+    top: -1.25rem;
+  }
+}
+
+.modal-container {
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  background-color: rgba($black, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-top: 10rem;
+
+  .modal {
+    margin-bottom: 10rem;
+  }
+}
+
+.hide-item {
+  transition: .5s ease;
+  transition-delay: 300ms;
+  opacity: 0;
+}
+
+@include screen(max, md) {
+  .add-button-container {
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--borders);
+    backdrop-filter: blur(2px);
+
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100vw;
+      height: 3rem;
+      top: calc(-3rem + 1px);
+      mask: url('/src/assets/images/menu_border.svg');
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      background-color:var(--borders);
+
+    }
+
+    & > button {
+      position: absolute;
+      top: -1.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      opacity: 1!important;
+      font-size: 1.5em;
+    }
+  }
+
+  body {
+    margin-bottom: 5rem;
+  }
+}

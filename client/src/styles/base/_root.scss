@@ -1,0 +1,33 @@
+
+@font-face {
+  font-family: "Varela Round";
+  src: url("../assets/fonts/VarelaRound-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$light-theme-css-variables: generate-css-variables($light-theme-colors);
+$dark-theme-css-variables: generate-css-variables($dark-theme-colors);
+
+:root {
+  @each $name, $value in $light-theme-css-variables {
+    #{$name}: #{$value}
+  }
+}
+
+body.dark {
+  @each $name, $value in $dark-theme-css-variables {
+    #{$name}: #{$value}
+  }
+}
+
+// @media (prefers-color-scheme: dark) {
+//   body {
+//     @each $name, $value in $dark-theme-css-variables {
+//       #{$name}: #{$value}
+//     }
+//   }
+// }
+
+
+

@@ -1,0 +1,83 @@
+$switch-light-theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "danger":     $danger,
+  "warning":    $warning,
+  "success":    $success,
+  "light":      $light,
+  "dark":       $dark,
+);
+
+$switch-dark-theme-colors: (
+  "primary":    $primary-alt,
+  "secondary":  $secondary-alt,
+  "danger":     $danger-alt,
+  "warning":    $warning-alt,
+  "success":    $success-alt,
+  "light":      $light-alt,
+  "dark":       $dark-alt,
+);
+
+.switch {
+  --switch-border: #{$border-width} #{$border-style} var(--text-color);
+  --switch-bg: var(--body--bg);
+  --switch-circle-bg: var(--text-color);
+  --switch-on-circle-bg: var(--text-color);
+  width: 100%;
+
+  &-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    input {
+      display: none;
+    }
+
+    &-text {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &-slider {
+    width: 2rem;
+    height: 1rem;
+    border-radius: 1rem;
+    border: var(--switch-border);
+    margin-left: 1rem;
+    cursor: pointer;
+    position: relative;
+    box-sizing: content-box;
+
+    &:before {
+      content: '';
+      width: calc(1rem - 6px);
+      height: calc(1rem - 6px);
+      position: absolute;
+      background-color: var(--text-color);
+      border-radius: 50%;
+      top: calc(50% - 5px);
+      left: 3px;
+      transition: transform .3s ease;
+
+    }
+  }
+
+  &.on &-slider{
+    background-color: var(--switch-bg);
+    border: var(--switch-on-border);
+    
+    &::before{
+      background-color: var(--switch-on-circle-bg);
+      transform: translateX(16px);
+      transform-origin: top right;
+    }
+  }
+
+  @each $color, $value in $switch-light-theme-colors {
+    &-#{$color} {
+      @include switch-variant($value)
+    }
+  }
+}

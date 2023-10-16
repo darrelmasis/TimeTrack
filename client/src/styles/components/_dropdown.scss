@@ -1,0 +1,151 @@
+.dropdown {
+  --dropdown-border: #{$border-width} #{$border-style} var(--borders);
+  --dropdown-menu-bg: var(--bg-container);
+  --dropdown-button-padding: .375rem;
+  --dropdown-item-color: var(--text-color);
+  --dropdown-item-hover-bg: var(--body-bg);
+  --dropdown-item-active-bg: #{darken($body-bg, 10%)};
+  position: relative;
+
+  &-lg > &-menu{
+    min-width: $dropdown-menu-lg-min-width;
+    padding: $spacer-base;
+  }
+  
+  &-md > &-menu{
+    min-width: $dropdown-menu-md-min-width;
+    padding: map-get($spacers, 2);
+  }
+
+  &-sm > &-menu{
+    min-width: $dropdown-menu-sm-min-width;
+    padding: map-get($spacers, 1);
+  }
+
+  &-menu {
+    position: absolute;
+    background-color: var(--dropdown-menu-bg);
+  }
+
+
+  &.open &-button::after {
+    transform: rotate(-180deg);
+  }
+
+  // los estilos de este botón no se uede reutilizar porque unicamente están para el dropdown del header
+  &-button {
+    border-radius: $border-radius-pill;
+    padding: var(--dropdown-button-padding);
+    background-color: var(--body-bg);
+    height: auto;
+    width: auto;
+    &::after {
+      transition: transform 300ms;
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: .375em;
+    text-decoration: none;
+    color: var(--dropdown-item-color);
+    user-select: none;
+
+    &:hover {
+      background-color: var(--dropdown-item-hover-bg);
+    }
+
+    &:active {
+      background-color: var(--dropdown-item-active-bg);
+    }
+
+    &-text {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &-divider {
+    height: 0;
+    margin: 1rem 0;
+    border: 0;
+    border-top: var(--dropdown-border);
+    overflow: hidden;
+  }
+}
+
+body.dark .dropdown {
+  --dropdown-item-active-bg: #{darken($body-bg-alt, 3%)};
+}
+
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: .75rem;
+  min-width: .75rem;
+  height: 1rem;
+  background-color: var(--text-color);
+  vertical-align: -4px;
+  margin-left: .5rem;
+  margin-right: .625rem;
+  mask-image: url(../assets/icons/caret-down.svg);
+  mask-size: 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+
+.drop-left {
+  top: calc(-50% - 1rem);
+  right: calc(100% + .75rem);
+
+  &.dropdown-menu {
+    &::after {
+      content: '';
+      width: 1rem;
+      height: 1rem;
+      background-image: linear-gradient(135deg, var(--bg-container) 50%, var(--bg-container) 50%, var(--bg-container) 100%);
+      position: absolute;
+      top: calc(50% - .25rem);
+      right: -9px;
+      transform: rotate(135deg);
+      border-left: 1px solid var(--borders);
+      border-top: 1px solid var(--borders);
+    }
+  }
+}
+
+.drop-bottom {
+  top: calc(100% + .5rem);
+  right: 0,
+}
+
+/*Transiciones*/
+
+$prefix: 'open';
+
+/* Clases CSS para la entrada del menú desplegable */
+.#{$prefix}-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.#{$prefix}-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Clases CSS para la salida del menú desplegable */
+.#{$prefix}-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.#{$prefix}-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}

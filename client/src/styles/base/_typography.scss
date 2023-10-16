@@ -1,0 +1,21 @@
+// Encabezados
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 0;
+  line-height: "";
+  margin-bottom: "";
+}
+
+// Tamaños de fuente responsive
+
+h1 {@include font-size(h1)}
+h2 {@include font-size(h2)}
+h3 {@include font-size(h3)}
+
+small, .small {font-size: size(small)}
+
+.smaller {font-size: size(smaller)}

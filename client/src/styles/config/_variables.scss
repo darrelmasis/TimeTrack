@@ -1,0 +1,210 @@
+@use "sass:math";
+// Sistema de colores
+
+//--TEMA CLARO--
+
+//Colores principales y de estados
+$primary:           #1192ee;
+$secondary:         #2a3b47;
+$danger:            #eb5656;
+$warning:           #ffba42;
+$success:           #2bd480;
+
+$primary-alt:       #0e7ecd;
+$secondary-alt:     #22303a;
+$danger-alt:        #d84646;
+$warning-alt:       #ffa600;
+$success-alt:       #2ebd75;
+
+//Colores neutros 
+$white:             #ffffff;
+$light:             #e4e6eb;
+$text:              #53575A;
+$dark:              #242526;
+$black:             #000000;
+
+$light-alt:         #e4e6eb;
+$text-alt:          #c8cdd0;
+$dark-alt:          #242526;
+
+$body-bg:           #f0f2f5;
+$body-bg-alt:       #18191a;
+$borders:           #E1E3E5; //ced0d4
+$borders-alt:       #373839; //3e4042 373839
+
+$containers-bg:     #ffffff;
+$containers-bg-alt: #242526;
+$shadow:            rgba(0,0,0,0.2);
+
+// Otros
+$muted:             #848789;
+$muted-alt:         #828283;
+
+// Tema Claro
+$light-theme-colors: (
+  "primary":        $primary,
+  "secondary":      $secondary,
+  "danger":         $danger,
+  "warning":        $warning,
+  "success":        $success,
+  "white":          $white,
+  "light":          $light,
+  "dark":           $dark,
+  "black":          $black,
+  "text-color":     $text,
+  "body-bg":        $body-bg,
+  "borders":        $borders,
+  "shadow":         $shadow
+);
+
+// Tema Oscuro
+$dark-theme-colors: (
+  "primary":        $primary-alt,
+  "secondary":      $secondary-alt,
+  "danger":         $danger-alt,
+  "warning":        $warning-alt,
+  "success":        $success-alt,
+  "white":          $white,
+  "light":          $light-alt,
+  "dark":           $dark-alt,
+  "black":          $black,
+  "text-color":     $text-alt,
+  "body-bg":        $body-bg-alt,
+  "borders":        $borders-alt,
+  "shadow":         $shadow
+);
+
+//Configuraciones
+$min-contrast-ratio:   3;
+
+$color-contrast-dark:      $body-bg-alt;
+$color-contrast-light:     $white ;
+
+
+//Variables para espacios
+$spacer-base: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer-base * .25,
+  2: $spacer-base * .5,
+  3: $spacer-base,
+  4: $spacer-base * 1.5,
+  5: $spacer-base * 3,
+);
+
+// Anchos para elementos
+
+$width-spacers: (25, 50, 75, 100);  
+
+//Grid Breakpoints
+$breakpoints : (
+  xs: 0px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+//Containers max-widths
+$containers: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+$container-padding-x: $spacer-base;
+$grid-columns: 12;
+$grid-gap: 1rem;
+
+// Espaciadores
+$spacer-base: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer-base * .25,
+  2: $spacer-base * .5,
+  3: $spacer-base,
+  4: $spacer-base * 1.5,
+  5: $spacer-base * 3,
+  auto: 'auto'
+);
+
+// Componentes
+
+// Bordes
+$border-width: 1px;
+$border-style: solid;
+$border-radius: .375rem;
+$border-radius-circle: 50%;
+$border-radius-pill: 50rem;
+
+
+// Transiciones
+$transition-base: all .2s ease-in-out;
+
+
+// Tipografía
+$font-family: 'Varela Round','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$fs-base: 1em;
+$fs-ratio: 1.250;
+$line-height-base: 1.5;
+$title-margin-bottom: .5rem;
+$titles-line-height: 1.2;
+$titles-font-weight: 400;
+
+// Tamaños de fuente
+$h6-fs: $fs-base * $fs-ratio;
+$h5-fs: $h6-fs * $fs-ratio;
+$h4-fs: $h5-fs * $fs-ratio;
+$h3-fs: $h4-fs * $fs-ratio;
+$h2-fs: $h3-fs * $fs-ratio;
+$h1-fs: $h2-fs * $fs-ratio;
+$small-fs: math.div($fs-base, $fs-ratio);
+$smaller-fs: math.div($small-fs, $fs-ratio);
+
+// Pesos de fuente
+$fw-bolder: bolder;
+$fw-bold: 700;
+$fw-semibold: 500;
+$fw-normal: 400;
+$fw-light: 300;
+$fw-lighter: lighter;
+
+//Párrafos
+$paragraph-margin-botton: 1rem;
+
+// Tamaos de fuente del proyecto
+$font-sizes: (
+  h1: $h1-fs,
+  h2: $h2-fs,
+  h3: $h3-fs,
+  h4: $h4-fs,
+  h5: $h5-fs,
+  h6: $h6-fs,
+  normal: $fs-base,
+  small: $small-fs,
+  smaller: $smaller-fs,
+);
+
+//Componentes
+
+//Botones
+$btn-width: auto;
+$btn-height: 2.5rem;
+$btn-padding-y: .375rem;
+$btn-padding-x: 1rem;
+$btn-small-fs: $small-fs;
+$btn-normal-fs: $fs-base;
+$btn-large-fs: $h6-fs;
+$btn-border-radius: .25rem;
+
+// Dropdown
+
+$dropdown-border: 1px solid var(--borders);
+$dropdown-border-radius: $border-radius;
+$dropdown-menu-lg-min-width: 16rem;
+$dropdown-menu-md-min-width: 8rem;
+$dropdown-menu-sm-min-width: 4rem;
+

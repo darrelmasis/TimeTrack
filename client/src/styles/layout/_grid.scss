@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat($grid-columns, 1fr);
+  grid-gap: $grid-gap;
+
+  &.grid-gap-0 {
+    grid-gap: 0!important;
+  }
+}
+
+@for $i from 1 through 12 {
+  .grid-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+@each $breakpoint, $width in $breakpoints {
+  @media screen and (min-width: $width) {
+    @for $i from 1 through 12 {
+      .grid-#{$breakpoint}-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+$bg-colors-light: (
+  "primary":      $primary,
+  "secondary":    $secondary,
+  "danger":       $danger,
+  "warning":      $warning,
+  "success":      $success,
+  "white":        $white,
+  "light":        $light,
+  "dark":         $dark,
+  "container":    $containers-bg,
+  "transparent":  "transparent"
+);
+
+$bg-colors-dark: (
+  "primary":      $primary-alt,
+  "secondary":    $secondary-alt,
+  "danger":       $danger-alt,
+  "warning":      $warning-alt,
+  "success":      $success-alt,
+  "white":        $secondary-alt,
+  "light":        $light-alt,
+  "dark":         $body-bg-alt,
+  "container":   $containers-bg-alt,
+  "transparent":  "transparent"
+);
+
+
+@each $colors, $value in $bg-colors-light {
+  .bg-#{$colors} {
+    --bg-#{$colors}: #{$value};
+
+    background-color: var(--bg-#{$colors});
+  }
+
+  @each $breakpoint, $breakpoint-value in $breakpoints {
+    @media (min-width: $breakpoint-value) {
+      .bg-#{$colors}-#{$breakpoint} {
+        --bg-#{$colors}: #{$value};
+        background-color: var(--bg-#{$colors});
+      }
+    }
+  }
+}
+
+@each $colors, $value in $bg-colors-dark {
+  body.dark .bg-#{$colors} {
+    --bg-#{$colors}: #{$value};
+
+    background-color: var(--bg-#{$colors});
+
+  }
+
+  @each $breakpoint, $breakpoint-value in $breakpoints {
+    @media (min-width: $breakpoint-value) {
+      body.dark .bg-#{$colors}-#{$breakpoint} {
+        --bg-#{$colors}: #{$value};
+    
+        background-color: var(--bg-#{$colors});
+    
+      }
+    }
+  }
+}  

@@ -1,0 +1,76 @@
+$spacer-clasess: (
+  't': 'top',
+  'b': 'bottom',
+  's': 'left',
+  'e': 'right',
+  'x': 'x-axis', // no se utiliza el valor x-axis ni de y-axis en el ciclo
+  'y': 'y-axis',
+  'a': 'xy-axis',
+  'auto': 'auto'
+);
+
+
+$properties: 'padding', 'margin';
+
+@mixin spacers() {
+  @each $property in $properties {
+    $prefix: '';
+    @if $property == 'margin' {$prefix: 'm'} @else {$prefix: 'p'};
+
+    @each $class, $class-value in $spacer-clasess {
+      @each $size, $spacer-value in $spacers {
+        $className: '';
+        @if $class == 'a' {$className : ''} @else {$className: $class};
+
+        .#{$prefix}#{$className}-#{$size} {
+          @if $class == 'x' {
+            #{$property}-left: #{$spacer-value};
+            #{$property}-right: #{$spacer-value};
+          } @else if $class == 'y' { 
+            #{$property}-top: #{$spacer-value};
+            #{$property}-bottom: #{$spacer-value};
+          } @else if $class == 'a' {
+            #{$property}-top: #{$spacer-value};
+            #{$property}-right: #{$spacer-value};
+            #{$property}-bottom: #{$spacer-value};
+            #{$property}-left: #{$spacer-value};
+          } @else if $class == 'auto' {
+            #{$property}: #{$spacer-value};
+          } @else {
+            #{$property}-#{$class-value}: #{$spacer-value}
+          }
+        }
+
+        // Clases responsivas
+        @each $breakpoint, $breakpoint-value in $breakpoints {
+          $responsive-class-name: #{$prefix}#{$className}-#{$breakpoint}-#{$size};
+
+          @media (min-width: $breakpoint-value) {
+            .#{$responsive-class-name} {
+              @if $class == 'x' {
+                #{$property}-left: #{$spacer-value}!important;
+                #{$property}-right: #{$spacer-value}!important;
+              } @else if $class == 'y' { 
+                #{$property}-top: #{$spacer-value}!important;
+                #{$property}-bottom: #{$spacer-value}!important;
+              } @else if $class == 'a' {
+                #{$property}-top: #{$spacer-value}!important;
+                #{$property}-right: #{$spacer-value}!important;
+                #{$property}-bottom: #{$spacer-value}!important;
+                #{$property}-left: #{$spacer-value}!important;
+              } @else if $class == 'auto' {
+                #{$property}: #{$spacer-value}!important;
+              } @else {
+                #{$property}-#{$class-value}: #{$spacer-value}!important
+              }
+            }
+          }
+        }
+
+      }
+    
+    }
+  }
+}
+
+
