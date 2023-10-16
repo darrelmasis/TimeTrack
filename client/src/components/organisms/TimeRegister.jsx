@@ -1,4 +1,4 @@
-import Icon from "../commons/icons"
+import {Icon} from "../commons/icons"
 import { Dropdown } from "../molecules/Dropdown"
 import { Button } from "../atoms/Button"
 import { useState } from "react"

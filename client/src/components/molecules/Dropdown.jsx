@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Button } from "../atoms/Button";
-import { Avatar } from "../atoms/Avatar";
 import { CSSTransition } from 'react-transition-group';
 
 export const Dropdown = ({ toggleButton, isOpen, setIsOpen, children, size, position }) => {

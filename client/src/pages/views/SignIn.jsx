@@ -1,6 +1,6 @@
 import { useState } from "react"  
 import { useUpdatePageTitle } from "../../App"
-import Icon from "../../components/commons/icons"
+import { Icon } from "../../components/commons/icons"
 import logo from "../../assets/images/logo-harinas-monisa.svg"
 
 const Signin = () => {
