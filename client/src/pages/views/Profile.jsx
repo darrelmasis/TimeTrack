@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useUpdatePageTitle } from "../../App"
 import { Header } from "../../components/organisms/header"
-import { Icon } from "../../components/commons/icons"
+import { Icon } from "../../components/commons/CustomIcons"
 import { TimeRegister } from "../../components/organisms/TimeRegister"
 import { Button } from "../../components/atoms/Button"
 import { Modal } from "../../components/organisms/Modal"

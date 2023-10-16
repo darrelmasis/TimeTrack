@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button } from "../atoms/Button";
-import {Icon} from "../commons/icons";
+import {Icon} from "../commons/CustomIcons";
 
 export const Modal = ({ transitionRef, isShow, closeModal, confirmAction, title, children}) => {
 
