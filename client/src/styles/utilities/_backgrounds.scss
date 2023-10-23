@@ -7,7 +7,7 @@ $bg-colors-light: (
   "white":        $white,
   "light":        $light,
   "dark":         $dark,
-  "container":    $containers-bg,
+  "container":    $container-bg,
   "transparent":  "transparent"
 );
 
@@ -17,10 +17,10 @@ $bg-colors-dark: (
   "danger":       $danger-alt,
   "warning":      $warning-alt,
   "success":      $success-alt,
-  "white":        $secondary-alt,
+  "white":        $white,
   "light":        $light-alt,
   "dark":         $body-bg-alt,
-  "container":   $containers-bg-alt,
+  "container":    $container-bg-alt,
   "transparent":  "transparent"
 );
 

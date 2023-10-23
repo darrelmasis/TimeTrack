@@ -1,6 +1,6 @@
 .dropdown {
-  --dropdown-border: #{$border-width} #{$border-style} var(--borders);
-  --dropdown-menu-bg: var(--bg-container);
+  --dropdown-border: #{$border-width} #{$border-style} var(--border-color);
+  --dropdown-menu-bg: var(--container-bg);
   --dropdown-button-padding: .375rem;
   --dropdown-item-color: var(--text-color);
   --dropdown-item-hover-bg: var(--body-bg);
@@ -108,11 +108,11 @@ body.dark .dropdown {
       height: 1rem;
       background-image: linear-gradient(135deg, var(--bg-container) 50%, var(--bg-container) 50%, var(--bg-container) 100%);
       position: absolute;
-      top: calc(50% - .25rem);
+      top: calc(50% - .5rem);
       right: -9px;
       transform: rotate(135deg);
-      border-left: 1px solid var(--borders);
-      border-top: 1px solid var(--borders);
+      border-left: 1px solid var(--border-color);
+      border-top: 1px solid var(--border-color);
     }
   }
 }

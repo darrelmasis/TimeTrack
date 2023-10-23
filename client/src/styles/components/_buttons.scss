@@ -1,140 +1,289 @@
-$button-light-theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "danger":     $danger,
-  "warning":    $warning,
-  "success":    $success,
-  "light":      $light,
-  "dark":       $dark,
-  "link":       $primary,
-  "text":       $primary
+$button-theme-colors: (
+  primary: $blues,
+  secondary: $grays,
+  danger: $reds,
+  warning: $yellows,
+  success: $greens,
+  light: $lights,
+  dark: $darks
 );
 
-$button-dark-theme-colors: (
-  "primary":    $primary-alt,
-  "secondary":  $secondary-alt,
-  "danger":     $danger-alt,
-  "warning":    $warning-alt,
-  "success":    $success-alt,
-  "light":      $light-alt,
-  "dark":       $dark-alt,
-  "link":       $primary-alt,
-  "text":       $primary
+$buttons-colors: (
+  primary: (
+    main: "500",
+    main-hover: "550",
+    main-hover-ghost: "50",
+    main-active: "600",
+    main-active-ghost: "100",
+    text-color: "0",
+    text-color-ghost: "500",
+  ),
+  secondary: (
+    main: "500",
+    main-hover: "550",
+    main-hover-ghost: "50",
+    main-active: "600",
+    main-active-ghost: "100",
+    text-color: "0",
+    text-color-ghost: "500",
+
+  ),
+  danger: (
+    main: "500",
+    main-hover: "600",
+    main-hover-ghost: "50",
+    main-active: "650",
+    main-active-ghost: "100",
+    text-color: "0",
+    text-color-ghost: "500",
+
+  ),
+  warning: (
+    main: "300",
+    main-hover: "350",
+    main-hover-ghost: "50",
+    main-active: "450",
+    main-active-ghost: "100",
+    text-color: "999",
+    text-color-ghost: "300",
+
+  ),
+  success: (
+    main: "500",
+    main-hover: "550",
+    main-hover-ghost: "50",
+    main-active: "600",
+    main-active-ghost: "100",
+    text-color: "0",
+    text-color-ghost: "500",
+
+  ),
+  light: (
+    main: "200",
+    main-hover: "250",
+    main-hover-ghost: "100",
+    main-active: "300",
+    main-active-ghost: "150",
+    text-color: "950",
+    text-color-ghost: "500",
+
+  ),
+  dark: (
+    main: "950",
+    main-hover: "900",
+    main-hover-ghost: "50",
+    main-active: "750",
+    main-active-ghost: "100",
+    text-color: "0",
+    text-color-ghost: "950",
+  ),
+  initial: (
+    main: "100",
+    main-hover: "150",
+    main-active: "200",
+    text-color: "999",
+  )
 );
 
-//Padding-y, padding-x, font-size, height, line-height
+$buttons-colors-dark: (
+  primary: (
+    main: '400',
+    main-hover: "300",
+    main-active: "500",
+    text-color: "950",
+
+    main-ghost: "300",
+    main-hover-ghost: "950",
+    main-active-ghost: "900",
+    text-color-ghost: "300",
+  ),
+  secondary: (
+    main: '400',
+    main-hover: "300",
+    main-active: "500",
+    text-color: "950",
+    
+    main-ghost: "300",
+    main-hover-ghost: "900",
+    main-active-ghost: "850",
+    text-color-ghost: "300",
+  ),
+  danger: (
+    main: '400',
+    main-hover: "300",
+    main-active: "500",
+    text-color: "950",
+    
+    main-ghost: "300",
+    main-hover-ghost: "950",
+    main-active-ghost: "900",
+    text-color-ghost: "300",
+  ),
+  warning: (
+    main: "200",
+    main-hover: "150",
+    main-active: "300",
+    text-color: "950",
+    
+    main-ghost: "200",
+    main-hover-ghost: "950",
+    main-active-ghost: "850",
+    text-color-ghost: "200",
+  ),
+  success: (
+    main: '400',
+    main-hover: "300",
+    main-active: "500",
+    text-color: "950",
+    
+    main-ghost: "300",
+    main-hover-ghost: "950",
+    main-active-ghost: "900",
+    text-color-ghost: "300",
+  ),
+  light: (
+    main: "300",
+    main-hover: "200",
+    main-active: "350",
+    text-color: "950",
+    
+    main-ghost: "200",
+    main-hover-ghost: "950",
+    main-active-ghost: "850",
+    text-color-ghost: "200",
+  ),
+  dark: (
+    main: "750",
+    main-hover: "650",
+    main-active: "800",
+    text-color: "50",
+
+    main-ghost: "300",
+    main-hover-ghost: "900",
+    main-active-ghost: "750",
+    text-color-ghost: "300",
+  ),
+  initial: (
+    main: "800",
+    main-hover: "750",
+    main-active: "800",
+    text-color: "0",
+  )
+);
+
+@function get-button-state($theme, $state, $variant: 'light') {
+  @if $variant == 'dark' {
+    @return map-get(map-get($buttons-colors-dark, #{$theme}), $state);
+  }
+  @return map-get(map-get($buttons-colors, #{$theme}), $state);
+}
+
+//Padding-y, padding-x, font-size, line-height
 $buttons-sizes: (
-  large: (.5rem, 1.5rem, $btn-large-fs, 3rem, 2),
-  small: (.25rem, .75rem, $btn-small-fs, 2rem, 1.5),
-  square: (.375rem, .375rem, $btn-normal-fs, 2.5rem, 1.75)
+  normal: ($btn-padding-y, $btn-padding-x, $btn-normal-fs, $btn-line-height),
+  square: ($btn-padding-y, $btn-padding-y, $btn-normal-fs, $btn-line-height),
+  large: (calc($btn-padding-y * $btn-ratio), calc($btn-padding-x * $btn-ratio), $btn-large-fs, $btn-line-height),
+  small: (calc($btn-padding-y / $btn-ratio), calc($btn-padding-x / $btn-ratio), $btn-small-fs, $btn-line-height)
 );
 
 .btn {
-  // Variables css iniciales para el botón
-  --btn-bg: transparent;
-  --btn-border: 1px solid transparent;
-  --btn-color: #{$text};
+  /*Estilos por defecto para los botones*/
+  @include button-initial(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main'), get-button-state('initial', 'main-hover'), get-button-state('initial', 'main-active'), get-button-state('initial', 'text-color'));
+
+  
+  // Tamaños
   --btn-padding: #{$btn-padding-y} #{$btn-padding-x};
   --btn-font-size: #{$btn-normal-fs};
-  --btn-height: #{$btn-height};
-  --btn-width: #{$btn-width};
-  --btn-line-height: #{$line-height-base};
-  --btn-border-radius: #{$btn-border-radius};
-  --btn-hover-bg: #{$body-bg};
-  --btn-active-bg: #{darken($body-bg, 3%)};
-  --btn-text-decoration: none;
+  --btn-line-height: #{$btn-line-height};
+    --btn-width: #{$btn-width};
 
-  color: var(--btn-color);
+  //Bordes
+  --btn-border: 0;
+  --btn-border-disabled: 0;
+  --btn-border-radius: #{$btn-border-radius};
+
+  //Otros
+  --btn-text-decoration: none;
+  --btn-text-align: center;
+
   background-color: var(--btn-bg);
+  color: var(--btn-color);
+  padding: var(--btn-padding);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border: var(--btn-border);
+  border-radius: var(--btn-border-radius);
+  text-decoration: var(--btn-text-decoration);
+  text-align: center;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  text-decoration: var(--btn-text-decoration);
-  border-radius: var(--btn-border-radius);
+  outline: 0;
   cursor: pointer;
-  outline: none;
-  border: var(--btn-border);
   vertical-align: middle;
   user-select: none;
-  // transition: $transition-base;
-  //Tamaño
-  width: var(--btn-width);
-  height: var(--btn-height);
-  padding: var(--btn-padding);
-  font-size:var(--btn-font-size);
-  line-height: var(--btn-line-height);
 
   &:hover {
-    background-color: var(--btn-hover-bg);
+    background-color: var(--btn-bg-hover);
+    color: var(--btn-color-hover)
   }
 
   &:active {
-    background-color: var(--btn-active-bg);
+    background-color: var(--btn-bg-active);
   }
 
+  &:disabled, &.disabled{
+    --btn-bg-hover: transparent;
+    --btn-bg-active: transparent;
+    cursor: not-allowed;
+    opacity: .5;
+  }
 }
 
 body.dark .btn {
-  --btn-color: #{$text-alt};
-  --btn-hover-bg: #{$body-bg-alt};
-  --btn-active-bg: #{darken($dark-alt, 3%)};
+  @include button-initial(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main', 'dark'), get-button-state('initial', 'main-hover', 'dark'), get-button-state('initial', 'main-active', 'dark'), get-button-state('initial', 'text-color', 'dark'));
 }
 
 @each $size, $values in $buttons-sizes {
   .btn-#{$size} {
     --btn-padding: #{nth($values, 1)} #{nth($values, 2)};
     --btn-font-size: #{nth($values, 3)};
-    --btn-height: #{nth($values, 4)};
-    --btn-line-height: #{nth($values, 5)};
+    --btn-line-height: #{nth($values, 4)};
     @if $size == "square" {
       --btn-width: #{nth($values, 4)};
     }
   }
 }
 
-// Colores Alternativos
-@each $color, $value in $button-light-theme-colors {
-  .btn-#{$color} {
-    @if $color == "text" {
-      @include button-text-variant($value)
-    } @else {
-      @if $color == "link" {
-        @include button-link($value);
-      } @else {
-        @include button-variant($value)
-      }
-    }
+@each $theme-color, $theme-value in $button-theme-colors {
+  .btn-#{$theme-color} {
+    @include button-variant($theme-value, get-button-state($theme-color, 'main'), get-button-state($theme-color, 'main-hover'), get-button-state($theme-color, 'main-active'), get-button-state($theme-color, 'text-color'));
+  } 
+}
+
+@each $theme-color, $theme-value in $button-theme-colors {
+  .btn-ghost-#{$theme-color} {
+    @include button-ghost-variant($theme-value, get-button-state($theme-color, 'main'), get-button-state($theme-color, 'main-hover-ghost'), get-button-state($theme-color, 'main-active-ghost'), get-button-state($theme-color, 'text-color'), get-button-state($theme-color, 'text-color-ghost'));
+  } 
+}
+
+@each $theme-color, $theme-value in $button-theme-colors {
+  body.dark .btn-#{$theme-color} {
+    @include button-variant($theme-value, get-button-state($theme-color, 'main', 'dark'), get-button-state($theme-color, 'main-hover', 'dark'), get-button-state($theme-color, 'main-active', 'dark'), get-button-state($theme-color, 'text-color', 'dark'));
   }
 }
 
-@each $color, $value in $button-dark-theme-colors {
-  body.dark .btn-#{$color} {
-    @if $color == "text" {
-      @include button-text-variant($value)
-    } @else {
-      @if $color == "link" {
-        @include button-link($value);
-      } @else {
-        @include button-variant($value)
-      }
-    }
-  }
+@each $theme-color, $theme-value in $button-theme-colors {
+  body.dark .btn-ghost-#{$theme-color} {
+    @include button-ghost-variant($theme-value, get-button-state($theme-color, 'main-ghost', 'dark'), get-button-state($theme-color, 'main-hover-ghost', 'dark'), get-button-state($theme-color, 'main-active-ghost', 'dark'), get-button-state($theme-color, 'text-color-ghost', 'dark'), get-button-state($theme-color, 'text-color-ghost', 'dark'));
+  } 
 }
 
-// Colores Alternativos contornos
-@each $color, $value in $button-light-theme-colors {
-  @if $color != "text" and $color != "link" {
-    .btn-ghost-#{$color} {
-       @include button-ghost-variant($value)
-      }
-  }
+.btn-text {
+  @include button-text-variant(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main'), get-button-state('initial', 'main-hover'), get-button-state('initial', 'main-active'), get-button-state('initial', 'text-color'));
 }
 
-@each $color, $value in $button-dark-theme-colors {
-  @if $color != "text" and $color != "link" {
-    body.dark .btn-ghost-#{$color} {
-       @include button-ghost-variant($value)
-      }
-  }
+body.dark .btn-text {
+  @include button-text-variant(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main', 'dark'), get-button-state('initial', 'main-hover', 'dark'), get-button-state('initial', 'main-active', 'dark'), get-button-state('initial', 'text-color', 'dark'));
 }

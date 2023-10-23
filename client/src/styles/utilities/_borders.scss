@@ -1,7 +1,7 @@
 $borders-directions: 'top', 'right', 'bottom', 'left', 'all','none';
 $borders-radius-corners: 'top-left', 'top-right', 'bottom-left', 'bottom-right', 'top', 'bottom', 'left', 'right', 'pill', 'circle','all';
 
-$border-style: $border-width $border-style var(--borders);
+$border-style: $border-width $border-style var(--border-color);
 $border-radius-base: $border-radius;
 
 @each $direction in $borders-directions {

@@ -1,21 +1,21 @@
 $switch-light-theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "danger":     $danger,
-  "warning":    $warning,
-  "success":    $success,
-  "light":      $light,
-  "dark":       $dark,
+  "primary": $blues,
+  "secondary": $grays,
+  "danger": $reds,
+  "warning": $yellows,
+  "success": $greens,
+  "light": $lights,
+  "dark": $darks
 );
 
 $switch-dark-theme-colors: (
-  "primary":    $primary-alt,
-  "secondary":  $secondary-alt,
-  "danger":     $danger-alt,
-  "warning":    $warning-alt,
-  "success":    $success-alt,
-  "light":      $light-alt,
-  "dark":       $dark-alt,
+  "primary": $blues,
+  "secondary": $grays,
+  "danger": $reds,
+  "warning": $yellows,
+  "success": $greens,
+  "light": $lights,
+  "dark": $darks
 );
 
 .switch {
@@ -23,6 +23,7 @@ $switch-dark-theme-colors: (
   --switch-bg: var(--body--bg);
   --switch-circle-bg: var(--text-color);
   --switch-on-circle-bg: var(--text-color);
+  
   width: 100%;
 
   &-label {

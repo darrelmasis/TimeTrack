@@ -1,8 +1,27 @@
-@mixin switch-variant($bg-color, $circle-color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 7%), $active-bg-color: darken($bg-color, 10%)) {
-  --switch-bg: #{$bg-color};
-  --switch-circle-bg: #{$bg-color};
-  --switch-hover-bg: #{$hover-bg-color};
-  --switch-active-bg: #{$active-bg-color};
-  --switch-on-border: #{$border-width} #{$border-style} #{$bg-color};
-  --switch-on-circle-bg: #{$circle-color};
+// @mixin switch-variant($bg-color,
+// $circle-color: color-contrast($bg-color),
+// $hover-bg-color: darken($bg-color, 7%),
+// $active-bg-color: darken($bg-color, 10%)) {
+//   --switch-bg: #{$bg-color};
+//   --switch-circle-bg: #{$bg-color};
+//   --switch-hover-bg: #{$hover-bg-color};
+//   --switch-active-bg: #{$active-bg-color};
+//   --switch-on-border: #{$border-width} #{$border-style} #{$bg-color};
+//   --switch-on-circle-bg: #{$circle-color};
+// }
+
+@mixin switch-variant(
+  $color,
+  $bg: map-get($color, "500"),
+  $bg-hover:map-get($color, "600"), 
+  $bg-active:map-get($color, "700"), 
+  $bg-disable:map-get($color, "200"),
+  $circle-color:map-get($color, "100"), 
+  $circle-color-disable: map-get($color, "200")
+  ) {
+  --switch-bg: #{$bg};
+  --switch-circle-bg: #{$bg};
+  --switch-bg-hover: #{$bg-hover};
+  --switch-bg-active: #{$bg-active};
+  --switch-bg-disable: #{$bg-disable};
 }

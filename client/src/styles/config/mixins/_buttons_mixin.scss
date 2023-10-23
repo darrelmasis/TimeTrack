@@ -1,46 +1,83 @@
 // Variantes de color
-@mixin button-variant($bg-color, $color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 7%), $active-bg-color: darken($bg-color, 10%)){
-  --btn-bg: #{$bg-color};
-  --btn-color: #{$color};
-  --btn-hover-bg: #{$hover-bg-color};
-  --btn-active-bg: #{$active-bg-color};
+// @mixin button-variant($bg-color, $color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 7%), $active-bg-color: darken($bg-color, 10%)){
+//   --btn-bg: #{$bg-color};
+//   --btn-color: #{$color};
+//   --btn-hover-bg: #{$hover-bg-color};
+//   --btn-active-bg: #{$active-bg-color};
+// }
+
+
+@mixin button-initial($color, $bg, $bg-hover, $bg-active, $text-color) {
+
+  $btn-bg: map-get($color, $bg);
+  $btn-bg-hover:  map-get($color, $bg-hover);
+  $btn-bg-active:  map-get($color, $bg-active);
+  $btn-text-color:  map-get($color, $text-color);
+    
+  // Color de Fondo y texto
+  --btn-bg: #{$btn-bg};
+  --btn-bg-hover: #{$btn-bg-hover};
+  --btn-bg-active: #{$btn-bg-active};
+  --btn-color: #{$btn-text-color};
+  --btn-color-hover: #{$btn-text-color};
+}
+
+@mixin button-variant($color, $bg, $bg-hover, $bg-active, $text-color) {
+
+  $btn-bg: map-get($color, $bg);
+  $btn-bg-hover:  map-get($color, $bg-hover);
+  $btn-bg-active:  map-get($color, $bg-active);
+  $btn-text-color:  map-get($color, $text-color);
+
+  --btn-bg: #{$btn-bg};
+  --btn-bg-hover: #{$btn-bg-hover};
+  --btn-bg-active: #{$btn-bg-active};
+  --btn-color: #{$btn-text-color};
+  --btn-color-hover: #{$btn-text-color};
+
+  &:focus {
+    box-shadow: 0 0 0 .25rem rgba(map-get($color, $bg), .25);
+  }
 }
 
 // Variantes de color pero en los botonoes Ghost
-@mixin button-ghost-variant($bg-color, $color: color-contrast($bg-color), $hover-bg-color: darken($bg-color, 5%), $active-bg-color: darken($bg-color, 3%)){
-  --btn-border: 1px solid #{$bg-color};
-  --btn-color: #{$bg-color};
+@mixin button-ghost-variant($color, $bg, $bg-hover, $bg-active, $text-color, $text-color-hover) {
+
+  $btn-border: map-get($color, $bg);
+  $btn-text-color: map-get($color, $bg);
+  $btn-hover-bg: map-get($color, $bg-hover);
+  $btn-active-bg: map-get($color, $bg-active);
+  $btn-text-color-hover: map-get($color, $text-color-hover);
   
-  &:hover {
-    --btn-color: #{$color};
-    --btn-hover-bg: #{$bg-color};
-  }
-
-  &:active {
-    --btn-active-bg: #{$active-bg-color};
-  }
-}
-
-
-@mixin button-text-variant($color){
+  --btn-border: 1px solid #{$btn-border};
+  --btn-color: #{$btn-text-color};
+  --btn-color-hover: #{$btn-text-color-hover};
+  --btn-bg-hover: #{$btn-hover-bg};
+  --btn-bg-active: #{$btn-active-bg};
   --btn-bg: transparent;
-  --btn-hover-bg: transparent;
-  --btn-active-bg: transparent;
-}
 
-@mixin button-link($color, $hover-color: darken($color, 10%)) {
-  --btn-color: #{$color};
-  --btn-hover-bg: none;
-  --btn-active-bg: none;
-  &:hover {
-    --btn-text-decoration: underline;
-    --btn-color: #{$hover-color};
+  &:focus {
+    box-shadow: 0 0 0 .25rem rgba(map-get($color, $bg), .25);
   }
 }
 
-@mixin button-size($padding-y, $padding-x, $font-size, $height, $line-height) {
-  --btn-padding: $padding-y $padding-x;
-  --btn-font-size: $font-size;
-  --btn-height: $height;
-  --btn-line-height: $line-height;
+
+@mixin button-text-variant($color, $bg, $bg-hover, $bg-active, $text-color) {
+
+  $btn-bg: transparent;
+  $btn-bg-hover:  map-get($color, $bg-hover);
+  $btn-bg-active:  map-get($color, $bg-active);
+  $btn-text-color:  map-get($color, $text-color);
+    
+  // Color de Fondo y texto
+  --btn-bg: #{$btn-bg};
+  --btn-bg-hover: #{$btn-bg-hover};
+  --btn-bg-active: #{$btn-bg-active};
+  --btn-color: #{$btn-text-color};
+  --btn-color-hover: #{$btn-text-color};
+
+  &:focus {
+    background-color: map-get($color, $bg-hover);
+    box-shadow: 0 0 0 .25rem rgba(map-get($color, $bg-hover), .5);
+  }
 }

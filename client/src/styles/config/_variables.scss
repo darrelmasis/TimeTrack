@@ -1,85 +1,242 @@
 @use "sass:math";
 // Sistema de colores
 
-//--TEMA CLARO--
+$blues: (
+  "0"  :    #ffffff,
+  "50" :    #f0f7ff,
+  "100":    #e0effe,
+  "150":    #c2dcff,
+  "200":    #bbdffc,
+  "250":    #a6d6fa,
+  "300":    #7ec5fb,
+  "350":    #59b5f9,
+  "400":    #3aa8f6,
+  "450":    #1f9aef,
+  "500":    #1192ee,
+  "550":    #0e7ed6,
+  "600":    #046fc5,
+  "650":    #0464b2,
+  "700":    #05589f,
+  "750":    #084d8e,
+  "800":    #084c84,
+  "850":    #0b4a7a,
+  "900":    #0d406d,
+  "950":    #092848,
+  "999":    #000000
+);
 
-//Colores principales y de estados
-$primary:           #1192ee;
-$secondary:         #2a3b47;
-$danger:            #eb5656;
-$warning:           #ffba42;
-$success:           #2bd480;
+$greens: (
+  "0"  :    #ffffff,
+  "50" :    #effef7,
+  "100":    #dafeef,
+  "150":    #caf9e4,
+  "200":    #b8fadd,
+  "250":    #a7f6d6,
+  "300":    #81f4c3,
+  "350":    #5af2b0,
+  "400":    #43e5a0,
+  "450":    #29d892,
+  "500":    #1acd81,
+  "550":    #14c57a,
+  "600":    #0fa968,
+  "650":    #0b9f5a,
+  "700":    #108554,
+  "750":    #0f7c4b,
+  "800":    #126945,
+  "850":    #10653f,
+  "900":    #11563a,
+  "950":    #03301f,
+  "999":    #000000
+);
 
-$primary-alt:       #0e7ecd;
-$secondary-alt:     #22303a;
-$danger-alt:        #d84646;
-$warning-alt:       #ffa600;
-$success-alt:       #2ebd75;
 
-//Colores neutros 
-$white:             #ffffff;
-$light:             #e4e6eb;
-$text:              #53575A;
-$dark:              #242526;
-$black:             #000000;
+$reds: (
+  "0"  :    #ffffff,
+  "50" :    #fef2f2,
+  "100":    #fde3e3,
+  "150":    #fcc1c1,
+  "200":    #fccccc,
+  "250":    #faaaaa,
+  "300":    #f9a8a8,
+  "350":    #f88b8b,
+  "400":    #f47575,
+  "450":    #f26161,
+  "500":    #eb5656,
+  "550":    #e84f4f,
+  "600":    #d62c2c,
+  "650":    #c92525,
+  "700":    #b42121,
+  "750":    #a81c1c,
+  "800":    #951f1f,
+  "850":    #8b1d1d,
+  "900":    #7c2020,
+  "950":    #430c0c,
+  "999":    #000000
+);
 
-$light-alt:         #e4e6eb;
-$text-alt:          #c8cdd0;
-$dark-alt:          #242526;
 
-$body-bg:           #f0f2f5;
-$body-bg-alt:       #18191a;
-$borders:           #E1E3E5; //ced0d4
-$borders-alt:       #373839; //3e4042 373839
+$yellows: (
+  "0"  :    #ffffff,
+  "50" :    #fff8eb,
+  "100":    #ffedc6,
+  "150":    #ffdfb1,
+  "200":    #ffd788,
+  "250":    #ffc96d,
+  "300":    #ffba42,
+  "350":    #ffab29,
+  "400":    #ffa420,
+  "450":    #fd8e15,
+  "500":    #f97f07,
+  "550":    #f77405,
+  "600":    #dd5a02,
+  "650":    #c95202,
+  "700":    #b73c06,
+  "750":    #a8300b,
+  "800":    #942d0c,
+  "850":    #8c2a0b,
+  "900":    #7a270d,
+  "950":    #461102,
+  "999":    #000000
+);
 
-$containers-bg:     #ffffff;
-$containers-bg-alt: #242526;
-$shadow:            rgba(0,0,0,0.2);
 
-// Otros
-$muted:             #848789;
-$muted-alt:         #828283;
+$grays: (
+  "0"  :    #ffffff,
+  "50" :    #f0f2f5,
+  "100":    #dadcdf,
+  "150":    #cfcfd0,
+  "200":    #c5c7c9,
+  "250":    #bcc0c3,
+  "300":    #afb1b3,
+  "350":    #a4a7a9,
+  "400":    #9a9b9d,
+  "450":    #919294,
+  "500":    #848688,
+  "550":    #7c7d7e,
+  "600":    #6e7072,
+  "650":    #666768,
+  "700":    #53575a,
+  "750":    #46494b,
+  "800":    #373839,
+  "850":    #2d2f30,
+  "900":    #242526,
+  "950":    #18191a,
+  "999":    #000000
+);
 
-// Tema Claro
+
+$lights: (
+  "0"  :    #ffffff,
+  "50" :    #f6f8f9,
+  "100":    #f0f3f5,
+  "150":    #e9ecf2,
+  "200":    #d4dee3,
+  "250":    #c4d6d9,
+  "300":    #afc1ca,
+  "350":    #96b4bf,
+  "400":    #84a0ac,
+  "450":    #7699a4,
+  "500":    #648493,
+  "550":    #5b7c8c,
+  "600":    #4f6b7a,
+  "650":    #496373,
+  "700":    #415763,
+  "750":    #3b4f59,
+  "800":    #394a53,
+  "850":    #37464f,
+  "900":    #334047,
+  "950":    #222a2f,
+  "999":    #000000
+);
+
+
+$darks: (
+  "0"  :    #ffffff,
+  "50" :    #f5f6f6,
+  "100":    #e5e7e8,
+  "150":    #dadcdc,
+  "200":    #cdd0d4,
+  "250":    #c2c4c9,
+  "300":    #abb0b5,
+  "350":    #98a0a6,
+  "400":    #808890,
+  "450":    #71767c,
+  "500":    #656c75,
+  "550":    #5f6369,
+  "600":    #575c63,
+  "650":    #4f545b,
+  "700":    #4a4e54,
+  "750":    #45484f,
+  "800":    #414449,
+  "850":    #3e4044,
+  "900":    #3a3c3f,
+  "950":    #18191b,
+  "999":    #000000
+);
+
+
 $light-theme-colors: (
-  "primary":        $primary,
-  "secondary":      $secondary,
-  "danger":         $danger,
-  "warning":        $warning,
-  "success":        $success,
-  "white":          $white,
-  "light":          $light,
-  "dark":           $dark,
-  "black":          $black,
-  "text-color":     $text,
-  "body-bg":        $body-bg,
-  "borders":        $borders,
-  "shadow":         $shadow
+  "primary"           : map-get($blues,   "500"),
+  "secondary"         : map-get($grays,   "500"),
+  "danger"            : map-get($reds,    "500"),
+  "warning"           : map-get($yellows, "300"),
+  "success"           : map-get($greens,  "500"),
+  "light"             : map-get($lights,  "300"),
+  "dark"              : map-get($darks,   "950"),
+  "text-color"        : map-get($grays,   "700"),
+  "text-color-muted"  : map-get($grays,   "400"),
+  "body-bg"           : map-get($grays,   "50" ),
+  "border-color"      : map-get($grays,   "100"), 
+  "container-bg"      : map-get($grays,   "0"  ), 
 );
 
-// Tema Oscuro
 $dark-theme-colors: (
-  "primary":        $primary-alt,
-  "secondary":      $secondary-alt,
-  "danger":         $danger-alt,
-  "warning":        $warning-alt,
-  "success":        $success-alt,
-  "white":          $white,
-  "light":          $light-alt,
-  "dark":           $dark-alt,
-  "black":          $black,
-  "text-color":     $text-alt,
-  "body-bg":        $body-bg-alt,
-  "borders":        $borders-alt,
-  "shadow":         $shadow
+  "primary"           : map-get($blues,   "500"),
+  "secondary"         : map-get($grays,   "500"),
+  "danger"            : map-get($reds,    "500"),
+  "warning"           : map-get($yellows, "300"),
+  "success"           : map-get($greens,  "500"),
+  "light"             : map-get($lights,  "300"),
+  "dark"              : map-get($darks,   "950"),
+  "text-color"        : map-get($grays,   "200"),
+  "text-color-muted"  : map-get($grays,   "500"),
+  "body-bg"           : map-get($grays,   "950"),
+  "border-color"      : map-get($grays,   "800"),
+  "container-bg"      : map-get($grays,   "900")
 );
 
-//Configuraciones
-$min-contrast-ratio:   3;
+$white            : #fff;
+$black            : #000;
 
-$color-contrast-dark:      $body-bg-alt;
+$primary              : map-get($light-theme-colors, "primary");
+$secondary            : map-get($light-theme-colors, "secondary");
+$danger               : map-get($light-theme-colors, "danger");
+$warning              : map-get($light-theme-colors, "warning");
+$success              : map-get($light-theme-colors, "success");
+$light                : map-get($light-theme-colors, "light");
+$dark                 : map-get($light-theme-colors, "dark");
+$text-color           : map-get($light-theme-colors, "text-color");
+$text-color-muted     : map-get($light-theme-colors, "text-color-muted");
+$body-bg              : map-get($light-theme-colors, "body-bg");
+$border-color         : map-get($light-theme-colors, "border-color");
+$container-bg         : map-get($light-theme-colors, "container-bg");
+
+$primary-alt          : map-get($dark-theme-colors, "primary");
+$secondary-alt        : map-get($dark-theme-colors, "secondary");
+$danger-alt           : map-get($dark-theme-colors, "danger");
+$warning-alt          : map-get($dark-theme-colors, "warning");
+$success-alt          : map-get($dark-theme-colors, "success");
+$light-alt            : map-get($dark-theme-colors, "light");
+$dark-alt             : map-get($dark-theme-colors, "dark");
+$text-color-alt       : map-get($dark-theme-colors, "text-color");
+$text-color-muted-alt : map-get($dark-theme-colors, "text-color-muted");
+$body-bg-alt          : map-get($dark-theme-colors, "body-bg");
+$border-color-alt     : map-get($dark-theme-colors, "border-color");
+$container-bg-alt     : map-get($dark-theme-colors, "container-bg");
+
+$min-contrast-ratio: 2;
+$color-contrast-dark:      $black;
 $color-contrast-light:     $white ;
-
 
 //Variables para espacios
 $spacer-base: 1rem;
@@ -191,10 +348,12 @@ $font-sizes: (
 //Componentes
 
 //Botones
+$btn-ratio: 1.3;
 $btn-width: auto;
 $btn-height: 2.5rem;
-$btn-padding-y: .375rem;
-$btn-padding-x: 1rem;
+$btn-line-height: 2;
+$btn-padding-y: .75rem;
+$btn-padding-x: 1.5rem;
 $btn-small-fs: $small-fs;
 $btn-normal-fs: $fs-base;
 $btn-large-fs: $h6-fs;

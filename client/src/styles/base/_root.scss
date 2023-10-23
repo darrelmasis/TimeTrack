@@ -21,13 +21,19 @@ body.dark {
   }
 }
 
-// @media (prefers-color-scheme: dark) {
-//   body {
-//     @each $name, $value in $dark-theme-css-variables {
-//       #{$name}: #{$value}
-//     }
-//   }
-// }
+@media (prefers-color-scheme: dark) {
+  body.dark {
+    @each $name, $value in $dark-theme-css-variables {
+      #{$name}: #{$value}
+    }
+  }
+
+  :root {
+    @each $name, $value in $light-theme-css-variables {
+      #{$name}: #{$value}
+    }
+  }
+}
 
 
 
