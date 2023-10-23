@@ -119,14 +119,14 @@ const svgsIcons = {
 
 
   
-export const Icon = ({ icon, classes, fixedWidth }) => {
+export const Icon = ({ icon, classes, fix }) => {
     
     const svgRender = svgsIcons[icon] || svgsIcons.default;
     
     return (
     <svg
     viewBox={svgRender.viewBox}
-    className={`icon ${classes} ${fixedWidth ? 'icon-fixed-width' : null}`}
+    className={`icon ${classes} ${fix === 'size' ? 'icon-fixed-size' : 'icon-fixed-width'}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       {svgRender.svg}
