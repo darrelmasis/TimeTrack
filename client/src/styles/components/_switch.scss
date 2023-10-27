@@ -1,84 +1,84 @@
-$switch-light-theme-colors: (
-  "primary": $blues,
-  "secondary": $grays,
-  "danger": $reds,
-  "warning": $yellows,
-  "success": $greens,
-  "light": $lights,
-  "dark": $darks
-);
-
-$switch-dark-theme-colors: (
-  "primary": $blues,
-  "secondary": $grays,
-  "danger": $reds,
-  "warning": $yellows,
-  "success": $greens,
-  "light": $lights,
-  "dark": $darks
-);
-
 .switch {
-  --switch-border: #{$border-width} #{$border-style} var(--text-color);
-  --switch-bg: var(--body--bg);
-  --switch-circle-bg: var(--text-color);
-  --switch-on-circle-bg: var(--text-color);
   
+  @include switch-variant($grays, $greens);
+
+  display: inline-block;
   width: 100%;
 
-  &-label {
+  & input {
+    display: none;
+
+    &:checked ~ .switch-slider {
+      background-color: var(--switch-bg-on);
+      border: 1px solid var(--switch-border-on);
+    }
+    
+    &:not(:checked) ~ .switch-slider {
+      background-color: var(--switch-bg-off);
+      border: 1px solid var(--switch-border-off);
+    }
+
+    &:checked:not(:disabled) ~ .switch-slider:after {
+        transform: translateX(14px);
+    }
+
+    &:not(:checked):active:not(:disabled) ~ .switch-slider:after{
+      width: 1rem;
+    }
+
+    &:checked:active:not(:disabled) ~ .switch-slider:after{
+      width: 1rem;
+      margin-left: -6px;
+    }
+
+    &:checked:not(:disabled) ~ .switch-slider:focus{
+      box-shadow: var(--switch-focus-shadow-on);
+    }
+
+    &:not(:checked):not(:disabled) ~ .switch-slider:focus{
+      box-shadow: var(--switch-focus-shadow-on);
+      background-color: var(--switch-bg-off);
+      border: 1px solid var(--switch-border-on);
+    }
+
+    &:not(:checked):not(:disabled) ~ .switch-slider:focus.switch-slider:after{
+      background-color: var(--switch-dot-off-focus);
+    }
+
+    &:checked:not(:disabled) ~ .switch-slider:after{
+      background-color: var(--switch-dot-on);
+    }
+
+    &:not(:checked):not(:disabled) ~ .switch-slider:after{
+      background-color: var(--switch-dot-off);
+    }
+  }
+
+  &-label, &-label-text {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    input {
-      display: none;
-    }
-
-    &-text {
-      display: flex;
-      align-items: center;
-    }
+    position: relative;
   }
 
   &-slider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 2rem;
     height: 1rem;
+    padding: 3px;
     border-radius: 1rem;
-    border: var(--switch-border);
-    margin-left: 1rem;
     cursor: pointer;
-    position: relative;
-    box-sizing: content-box;
+    transition: .3s ease;
 
-    &:before {
+    &::after {
       content: '';
-      width: calc(1rem - 6px);
-      height: calc(1rem - 6px);
-      position: absolute;
-      background-color: var(--text-color);
-      border-radius: 50%;
-      top: calc(50% - 5px);
-      left: 3px;
-      transition: transform .3s ease;
-
-    }
-  }
-
-  &.on &-slider{
-    background-color: var(--switch-bg);
-    border: var(--switch-on-border);
-    
-    &::before{
-      background-color: var(--switch-on-circle-bg);
-      transform: translateX(16px);
-      transform-origin: top right;
-    }
-  }
-
-  @each $color, $value in $switch-light-theme-colors {
-    &-#{$color} {
-      @include switch-variant($value)
+      display: inherit;
+      width: .625rem;
+      height: .625rem;
+      border-radius: 12px;
+      transition: .2s ease;
     }
   }
 }

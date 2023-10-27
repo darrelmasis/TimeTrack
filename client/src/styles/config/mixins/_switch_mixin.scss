@@ -9,19 +9,31 @@
 //   --switch-on-border: #{$border-width} #{$border-style} #{$bg-color};
 //   --switch-on-circle-bg: #{$circle-color};
 // }
+@mixin switch-variant($color-off, $color-on) {
 
-@mixin switch-variant(
-  $color,
-  $bg: map-get($color, "500"),
-  $bg-hover:map-get($color, "600"), 
-  $bg-active:map-get($color, "700"), 
-  $bg-disable:map-get($color, "200"),
-  $circle-color:map-get($color, "100"), 
-  $circle-color-disable: map-get($color, "200")
-  ) {
-  --switch-bg: #{$bg};
-  --switch-circle-bg: #{$bg};
-  --switch-bg-hover: #{$bg-hover};
-  --switch-bg-active: #{$bg-active};
-  --switch-bg-disable: #{$bg-disable};
+  $bg-off: map-get($color-off, "50");
+  $border-off: map-get($color-off, "500");
+  $circle-bg-off: map-get($color-off, "500");
+  $circle-bg-off-focus: map-get($color-on, "400");
+
+  $bg-on: map-get($color-on, "500");
+  $border-on: map-get($color-on, "400");
+  $circle-bg-on: map-get($color-on, "0");
+  $circle-bg-on-focus: map-get($color-on, "0");
+
+  $focus-shadow-off: 0 0 0 .25rem rgba($bg-off, .25);
+  $focus-shadow-on: 0 0 0 .25rem rgba($bg-on, .25);
+
+  $shared-focus-shadow: $focus-shadow-on;
+  --switch-bg-off: #{$bg-off};
+  --switch-border-off: #{$border-off};
+  --switch-border-on: #{$border-on};
+  --switch-bg-on: #{$bg-on};
+
+  --switch-dot-on: #{$circle-bg-on};
+  --switch-dot-off: #{$circle-bg-off};
+  --switch-dot-off-focus: #{$circle-bg-off-focus};
+
+  --switch-focus-shadow-off: #{$focus-shadow-off};
+  --switch-focus-shadow-on: #{$focus-shadow-on};
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect} from "react";
 import { useTheme } from "../commons/ThemeContext";
 
-export const SwitchControl = ({ switchId, variant, classes, children }) => {
+export const SwitchControl = ({ switchId, classes, children }) => {
   const { isDarkMode, toggleDarkMode } = useTheme();
   const [isChecked, setIsChecked] = useState(isDarkMode); // Inicializa el estado con el valor de isDarkMode
 
@@ -33,13 +33,13 @@ export const SwitchControl = ({ switchId, variant, classes, children }) => {
   }, []);
   
   return (
-    <div className={`switch ${variant ? `switch-${variant}` : ""} ${classes ? classes : ""} ${isChecked ? "on" : ""}`}>
+    <div className={`switch ${classes ? classes : ""} ${isChecked ? "on" : ""}`}>
       <label htmlFor={switchId} className="switch-label">
+        <input type="checkbox" id={switchId} checked={isChecked} onChange={toggleSwitch}/>
         <div className="switch-label-text">
           {children}
-          <input type="checkbox" id={switchId} checked={isChecked} onChange={toggleSwitch}/>
         </div>
-        <div className="switch-slider"></div>
+        <div className="switch-slider" tabIndex="0"></div>
       </label>
     </div>
   );
