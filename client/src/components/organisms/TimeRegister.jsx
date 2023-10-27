@@ -13,7 +13,7 @@ export const TimeRegister = ({currentId, day, date, startTime, finishTime, activ
 
 
   const settingsMenuButton = (
-    <Button variant="" isSquare={true} onClickCallBack={toggleDropdown}><Icon icon="ellipsis-vertical" fixedWidth /></Button>
+    <Button variant="text" isSquare={true} onClickCallBack={toggleDropdown}><Icon icon="ellipsis-vertical" fixedWidth /></Button>
   )
 
   return (
