@@ -70,14 +70,14 @@ const Profile = () => {
             <div className="mb-2">
               <div className="d-flex align-items-center justify-content-space-between">
                 <div className="d-flex align-items-center">
-                  <Button variant="ghost-primary" isSquare={true} className=""><Icon icon="arrow-left" /></Button>
-                  <Button variant="ghost-primary" isSquare={true}><Icon icon="arrow-right" /></Button>
+                  <Button variant="ghost-primary" className="disabled me-2"><Icon icon="arrow-left" /></Button>
+                  <Button variant="ghost-primary" className="me-2"><Icon icon="arrow-right" /></Button>
                   <p className="ps-3">Semana del 9 al 15 de octubre 2023</p>
                 </div>
                 <div className="d-flex align-items-center position-fixed bg-transparent-lg position-lg-static add-button-container z-index-3">
                   <span className="me-2 d-none d-lg-block">Agregar Marcación</span>
-                  <Button variant="success" isSquare={true} size="large" className="rounded-circle">
-                    <Icon icon="plus"></Icon>
+                  <Button variant="success" isSquare={true} className="">
+                    <Icon icon="plus" fix></Icon>
                   </Button>
                 </div>
               </div>
