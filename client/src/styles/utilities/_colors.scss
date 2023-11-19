@@ -7,7 +7,8 @@ $text-colors-light: (
   "white":        $white,
   "light":        $light,
   "dark":         $dark,
-  "muted":        $text-color-muted
+  "muted":        $text-color-muted,
+  "body":         $text-color
 );
 
 $text-colors-dark: (
@@ -19,7 +20,12 @@ $text-colors-dark: (
   "white":        $secondary-alt,
   "light":        $light-alt,
   "dark":         $dark-alt,
-  "muted":        $text-color-muted-alt
+  "muted":        $text-color-muted-alt,
+  "body":         $text-color-alt
+);
+
+$body-colors: (
+
 );
 
 
@@ -38,4 +44,4 @@ $text-colors-dark: (
     color: var(--text-#{$colors});
 
   }
-} 
+}
