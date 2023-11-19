@@ -1,0 +1,17 @@
+@mixin dropdown-item-initial($color, $bg-hover, $bg-active) {
+  $dropdown-item-bg-hover: map-get($color, $bg-hover);
+  $dropdown-item-bg-active: map-get($color, $bg-active);
+
+  --dropdown-item-bg-hover: #{$dropdown-item-bg-hover};
+  --dropdown-item-bg-active: #{$dropdown-item-bg-active};
+}
+
+@mixin dropdown-item-variant($color, $bg-hover, $bg-active, $text-color) {
+  $dropdown-item-bg-hover: map-get($color, $bg-hover);
+  $dropdown-item-bg-active: map-get($color, $bg-active);
+  $dropdown-item-text-color: map-get($color, $text-color);
+
+  --dropdown-item-bg-hover: #{$dropdown-item-bg-hover};
+  --dropdown-item-bg-active: #{$dropdown-item-bg-active};
+  --dropdown-item-text-color-hover: #{$dropdown-item-text-color};
+}
