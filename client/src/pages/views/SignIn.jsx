@@ -1,4 +1,4 @@
-import { useState } from "react"  
+import { useState } from "react"
 import { useUpdatePageTitle } from "../../App"
 import { Icon } from "../../components/commons/CustomIcons"
 import { ImageSwitcher } from "../../components/atoms/ImageSwitcher"

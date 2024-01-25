@@ -4,6 +4,7 @@ Esta es una aplicación web diseñada para ayudar a los trabajadores a gestionar
 
 ## Características Principales
 - Registro de marcaciones de entrada y salida.
+- Registro automático de viáticos de alimentación.
 - Visualización y edición de registros anteriores.
 - Resumen de horas trabajadas en un periodo específico.
 - Informes de asistencia y puntualidad.
@@ -21,4 +22,4 @@ Esta es una aplicación web diseñada para ayudar a los trabajadores a gestionar
 
 ## Autores
 
-- [Darel Masis](https://github.com/darrelmasis) - Desarrollador
+- [Darel Masis](https://github.com/darrelmasis) - Desarrollador y Diseñador Web
