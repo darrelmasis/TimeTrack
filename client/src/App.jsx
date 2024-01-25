@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Signup, Signin, Profile, Error404} from './pages/index';
 
-const companyName = "MONISA"
+const appName = "TimeTrack"
 
 export const useUpdatePageTitle = (pageTitle) => {
   useEffect(() => {
-    document.title = `${companyName} | ${pageTitle}`
+    document.title = `${appName} | ${pageTitle}`
   }, [pageTitle])
 }
 
