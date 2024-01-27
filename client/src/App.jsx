@@ -1,14 +1,5 @@
-import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { Signup, Signin, Profile, Error404} from './pages/index';
-
-const appName = "TimeTrack"
-
-export const useUpdatePageTitle = (pageTitle) => {
-  useEffect(() => {
-    document.title = `${appName} | ${pageTitle}`
-  }, [pageTitle])
-}
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Signup, Signin, Profile, Error404 } from './pages/index'
 
 const App = () => {
   return (
