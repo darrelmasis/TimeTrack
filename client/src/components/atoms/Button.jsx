@@ -1,8 +1,17 @@
-export const Button = ({ size, variant, isSquare, children, onClickCallBack, className}) => {
-  
-  const buttonClasses = `btn ${variant ? `btn-${variant}` : ''} ${size ? `btn-${size}` : ''} ${isSquare ? 'btn-square' : ''}`.trim() + ` ${className ? className : ''}`;
+import classNames from 'classnames'
+
+export const Button = ({ size, variant, isSquare, children, onClick, classes }) => {
+  const buttonClasses = classNames('btn', size && `btn-${size}`, variant && `btn-${variant}`, isSquare && 'btn-square', classes)
+
+  const handleOnclick = () => {
+    if (onClick) {
+      onclick()
+    }
+  }
 
   return (
-    <button type="button" className={buttonClasses.trim()} onClick={onClickCallBack}>{ children }</button>
+    <button type="button" className={buttonClasses} onClick={handleOnclick}>
+      {children}
+    </button>
   )
 }
