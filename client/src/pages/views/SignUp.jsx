@@ -1,7 +1,3 @@
-
-
-const Signup = () => {
-
-}
+const Signup = () => {}
 
 export default Signup

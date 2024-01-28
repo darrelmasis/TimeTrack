@@ -1,11 +1,9 @@
-import React from 'react'
-import { useUpdatePageTitle } from "../../App"
+import { usePageTitle } from '../../utils/helpersFunction'
 
-function error404() {
-  useUpdatePageTitle("Página no encontrada")
-  return (
-    <h1>Error 404, no encontrado</h1>
-  )
+const Error404 = () => {
+  usePageTitle('Página no encontrada')
+
+  return <h1>Error 404, no encontrado</h1>
 }
 
-export default error404
+export default Error404
