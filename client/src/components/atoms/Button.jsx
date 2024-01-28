@@ -5,7 +5,7 @@ export const Button = ({ size, variant, isSquare, children, onClick, classes }) 
 
   const handleOnclick = () => {
     if (onClick) {
-      onclick()
+      onClick()
     }
   }
 
