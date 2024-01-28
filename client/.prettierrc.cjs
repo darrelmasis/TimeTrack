@@ -6,6 +6,7 @@ const config = {
   printWidth: 160,           // Ancho máximo de la línea antes de realizar un salto de línea
   trailingComma: 'es5',      // Añadir una coma al final de las listas de propiedades o elementos
   arrowParens: 'avoid',      // Envolver paréntesis alrededor de los parámetros de las funciones de flecha siempre (always) o solo cuando sea necesario (avoid)
+  bracketSpacing: true,
   overrides: [
     {
       files: ['*.jsx'],
