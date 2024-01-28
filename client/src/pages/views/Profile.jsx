@@ -1,77 +1,127 @@
-import React, { useEffect, useRef, useState } from "react"
-import { useUpdatePageTitle } from "../../App"
-import { Header } from "../../components/organisms/Header"
-import { Icon } from "../../components/commons/CustomIcons"
-import { TimeRegister } from "../../components/organisms/TimeRegister"
-import { Button } from "../../components/atoms/Button"
-import { Modal } from "../../components/organisms/Modal"
-import { CSSTransition } from "react-transition-group"
+import { useRef, useState } from 'react'
+import { usePageTitle } from '../../utils/helpersFunction'
+import { Header } from '../../components/organisms/Header'
+import { Icon } from '../../components/commons/CustomIcons'
+import { TimeRegister } from '../../components/organisms/TimeRegister'
+import { Button } from '../../components/atoms/Button'
+import { Modal } from '../../components/organisms/Modal'
+import { CSSTransition } from 'react-transition-group'
 
 const Profile = () => {
-  useUpdatePageTitle("Perfil")
-  const dpr = window.devicePixelRatio
+  usePageTitle('Perfil')
+
   const [timeRegisterList, setTimeRegisterList] = useState([
-    { id: 1, day: "Domingo", date: "17 Sep.", startTime: "06:23 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 2, day: "Lunes", date: "18 Sep.", startTime: "06:43 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 3, day: "Martes", date: "19 Sep.", startTime: "07:10 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 4, day: "Miércoles", date: "19 Sep.", startTime: "07:15 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 5, day: "Jueves", date: "20 Sep.", startTime: "07:0 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 6, day: "Viernes", date: "21 Sep.", startTime: "06:09 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
-    { id: 7, day: "Sábado", date: "22 Sep.", startTime: "07:21 AM", finishTime: "8:21 PM", activity: "Inventario - CEDIS Estelí & Matagalpa" },
+    {
+      id: 1,
+      day: 'Domingo',
+      date: '17 Sep.',
+      startTime: '06:23 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 2,
+      day: 'Lunes',
+      date: '18 Sep.',
+      startTime: '06:43 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 3,
+      day: 'Martes',
+      date: '19 Sep.',
+      startTime: '07:10 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 4,
+      day: 'Miércoles',
+      date: '19 Sep.',
+      startTime: '07:15 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 5,
+      day: 'Jueves',
+      date: '20 Sep.',
+      startTime: '07:0 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 6,
+      day: 'Viernes',
+      date: '21 Sep.',
+      startTime: '06:09 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
+    {
+      id: 7,
+      day: 'Sábado',
+      date: '22 Sep.',
+      startTime: '07:21 AM',
+      finishTime: '8:21 PM',
+      activity: 'Inventario - CEDIS Estelí & Matagalpa',
+    },
   ])
 
-
   const [isModalShow, setIsModalShow] = useState(false)
-  const [idToDelete, setIdToDelete] = useState(null);
+  const [idToDelete, setIdToDelete] = useState(null)
 
   const modalRef = useRef(null)
 
-  const openModal = (id) => {
+  const openModal = id => {
     setIsModalShow(true)
-    setIdToDelete(id);
+    setIdToDelete(id)
   }
 
   const closeModal = () => {
     setIsModalShow(false)
-    setIdToDelete(null);
+    setIdToDelete(null)
   }
 
   const handleModalConfirmation = () => {
     if (idToDelete) {
-      deleteOption(idToDelete);
-      closeModal();
+      deleteOption(idToDelete)
+      closeModal()
     }
   }
 
-
-
-  const deleteOption = (id) => {
+  const deleteOption = id => {
     // Filtrar la lista para eliminar el elemento con el ID correspondiente
-    const updatedList = timeRegisterList.filter((item) => item.id !== id)
+    const updatedList = timeRegisterList.filter(item => item.id !== id)
     const currentItem = document.getElementById('time-register-item-' + id)
 
     currentItem.classList.add('hide-item')
     setTimeout(() => {
-      setTimeRegisterList(updatedList);
-    }, 1000);
+      setTimeRegisterList(updatedList)
+    }, 1000)
   }
-
 
   return (
     <>
       <Header />
       <CSSTransition nodeRef={modalRef} in={isModalShow} timeout={300} classNames="open" unmountOnExit>
-        <Modal transitionRef={modalRef} isShow={isModalShow} closeModal={closeModal} confirmAction={handleModalConfirmation} title="Confirmación">¿Estás seguro de que deseas eliminar este registro?</Modal>
+        <Modal transitionRef={modalRef} isShow={isModalShow} closeModal={closeModal} confirmAction={handleModalConfirmation} title="Confirmación">
+          ¿Estás seguro de que deseas eliminar este registro?
+        </Modal>
       </CSSTransition>
       <div className="container mt-3">
         <div className="grid">
           <div className="grid-12 grid-lg-9">
-
             <div className="mb-2">
               <div className="d-flex align-items-center justify-content-space-between">
                 <div className="d-flex align-items-center">
-                  <Button variant="ghost-primary" className="disabled me-2"><Icon icon="arrow-left" /></Button>
-                  <Button variant="ghost-primary" className="me-2"><Icon icon="arrow-right" /></Button>
+                  <Button variant="ghost-primary" className="disabled me-2">
+                    <Icon icon="arrow-left" />
+                  </Button>
+                  <Button variant="ghost-primary" className="me-2">
+                    <Icon icon="arrow-right" />
+                  </Button>
                   <p className="ps-3">Semana del 9 al 15 de octubre 2023</p>
                 </div>
                 <div className="d-flex align-items-center position-fixed bg-transparent-lg position-lg-static add-button-container z-index-3">
@@ -90,11 +140,18 @@ const Profile = () => {
               <div className="grid-2 small">Horas Totales</div>
               <div className="grid-5 small">Actividad Desarrollada</div>
             </div>
-            {
-              timeRegisterList.map(({ id, day, date, startTime, finishTime, activity }) => (
-                <TimeRegister key={id} day={day} date={date} startTime={startTime} finishTime={finishTime} activity={activity} deleteOption={() => openModal(id)} currentId={id}></TimeRegister>
-              ))
-            }
+            {timeRegisterList.map(({ id, day, date, startTime, finishTime, activity }) => (
+              <TimeRegister
+                key={id}
+                day={day}
+                date={date}
+                startTime={startTime}
+                finishTime={finishTime}
+                activity={activity}
+                deleteOption={() => openModal(id)}
+                currentId={id}
+              ></TimeRegister>
+            ))}
           </div>
           <div className="grid-12 grid-lg-3">
             {/* <div className="bg-container p-3 rounded border">
