@@ -97,24 +97,10 @@ $dropdown-item-dark-colors: (
 
   position: relative;
 
-  &-lg > &-menu{
-    min-width: $dropdown-menu-lg-min-width;
-    padding: $spacer-base;
-  }
-
-  &-md > &-menu{
-    min-width: $dropdown-menu-md-min-width;
-    padding: map-get($spacers, 2);
-  }
-
-  &-sm > &-menu{
-    min-width: $dropdown-menu-sm-min-width;
-    padding: map-get($spacers, 1);
-  }
-
   &-menu {
     position: absolute;
     background-color: var(--dropdown-menu-bg);
+    width: max-content;
   }
 
 
@@ -189,30 +175,6 @@ body.dark .dropdown {
   mask-repeat: no-repeat;
 }
 
-.drop-left {
-  top: calc(-50% - 1.875rem);
-  right: calc(100% + 1rem);
-
-  &.dropdown-menu {
-    &::after {
-      content: '';
-      width: 1rem;
-      height: 1rem;
-      background-image: linear-gradient(135deg, var(--bg-container) 50%, var(--bg-container) 50%, var(--bg-container) 100%);
-      position: absolute;
-      top: calc(50% - .5rem);
-      right: -9px;
-      transform: rotate(135deg);
-      border-left: 1px solid var(--border-color);
-      border-top: 1px solid var(--border-color);
-    }
-  }
-}
-
-.drop-bottom {
-  top: calc(100% + .5rem);
-  right: 0,
-}
 
 body.dark .dropdown {
   @include dropdown-item-initial(map-get($dropdown-theme-colors, 'secondary'), get-dropdown-state('initial','hover', 'dark'), get-dropdown-state('initial', 'active', 'dark'));
@@ -228,32 +190,4 @@ body.dark .dropdown {
   body.dark .dropdown-item-#{$theme-color} {
     @include dropdown-item-variant($theme-value, get-dropdown-state($theme-color, 'hover', 'dark'), get-dropdown-state($theme-color, 'active','dark'), get-dropdown-state($theme-color, 'text-color', 'dark'))
   }
-}
-
-/*Transiciones*/
-
-$prefix: 'open';
-
-/* Clases CSS para la entrada del menú desplegable */
-.#{$prefix}-enter {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.#{$prefix}-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Clases CSS para la salida del menú desplegable */
-.#{$prefix}-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.#{$prefix}-exit-active {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 300ms, transform 300ms;
 }
