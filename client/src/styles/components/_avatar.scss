@@ -5,11 +5,12 @@
   justify-content: center;
   line-height: 1;
   border-radius: 50%;
-  overflow: hidden;
+  // overflow: hidden;
   user-select: none;
-  color: $dark;
-  background-color: #ff5722;
+  color: $primary;
+  background-color: $body-bg;
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: bold;
   text-align: center;
 
   & > img {
@@ -18,6 +19,7 @@
     object-fit: cover;
     color: transparent;
   }
+
 }
 
 //Font-Size Scale: 1.250 Major Third
