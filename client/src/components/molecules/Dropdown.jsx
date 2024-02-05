@@ -17,11 +17,11 @@ const Dropdown = ({ children, classes }) => {
       arrow({
         element: arrowRef,
       }),
-      flip()
+      flip(),
     ],
     open: isOpen,
     onOpenChange: setIsOpen,
-    whileElementsMounted: autoUpdate
+    whileElementsMounted: autoUpdate,
   })
 
   const dismiss = useDismiss(context, { ancestorScroll: true })
@@ -105,8 +105,8 @@ const DropdownItemText = ({ children, classes }) => {
   return <div className={componentClasses}>{children}</div>
 }
 
-const DropdownDivider = (classes) => {
-  const componentClasses = classNames('dropdown-divider', classes && classes);
+const DropdownDivider = classes => {
+  const componentClasses = classNames('dropdown-divider', classes && classes)
 
   return <div className={componentClasses} />
 }
