@@ -26,7 +26,7 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
 
       {/* Menú de opciones */}
       <div className="grid-1 grid-lg-1 items-options-button d-flex align-items-center justify-content-flex-end">
-        <Dropdown toggleButton={settingsMenuButton} isOpen={isOpen} setIsOpen={setIsOpen} size="small" position="left">
+        {/* <Dropdown toggleButton={settingsMenuButton} isOpen={isOpen} setIsOpen={setIsOpen} size="small" position="left">
           <div className="mt-2">
             <div className="dropdown-item p-0 mb-2">
               <Button variant="ghost-success" size="medium" className="w-100 border-none">
@@ -41,7 +41,7 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
               </Button>
             </div>
           </div>
-        </Dropdown>
+        </Dropdown> */}
       </div>
 
       {/* Jornada */}

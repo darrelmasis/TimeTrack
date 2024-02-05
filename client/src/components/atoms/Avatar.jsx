@@ -4,11 +4,11 @@
  * el texto mostrado se tomará del nombre del usuario ej: John Doe = JD
  */
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import classNames from 'classnames'
 import initials from 'initials'
 
-export const Avatar = ({ size, name, src, color, classes }) => {
+export const Avatar = ({ size, name, src, classes }) => {
   const componentClasses = classNames('avatar', size && `avatar-${size}`, classes && classes)
   const abbr = initials(name)
   const [imageLoaded, setImageLoaded] = useState(true)
