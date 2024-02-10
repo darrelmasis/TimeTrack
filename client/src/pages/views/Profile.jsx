@@ -4,8 +4,7 @@ import { Header } from '../../components/organisms/Header'
 import { Icon } from '../../components/commons/CustomIcons'
 import { TimeRegister } from '../../components/organisms/TimeRegister'
 import { Button } from '../../components/atoms/Button'
-import { Modal } from '../../components/organisms/Modal'
-import { CSSTransition } from 'react-transition-group'
+import { Modal, ModalTrigger, ModalContent } from '../../components/organisms/Modal'
 
 const Profile = () => {
   usePageTitle('Perfil')
@@ -69,47 +68,10 @@ const Profile = () => {
     },
   ])
 
-  const [isModalShow, setIsModalShow] = useState(false)
-  const [idToDelete, setIdToDelete] = useState(null)
-
-  const modalRef = useRef(null)
-
-  const openModal = id => {
-    setIsModalShow(true)
-    setIdToDelete(id)
-  }
-
-  const closeModal = () => {
-    setIsModalShow(false)
-    setIdToDelete(null)
-  }
-
-  const handleModalConfirmation = () => {
-    if (idToDelete) {
-      deleteOption(idToDelete)
-      closeModal()
-    }
-  }
-
-  const deleteOption = id => {
-    // Filtrar la lista para eliminar el elemento con el ID correspondiente
-    const updatedList = timeRegisterList.filter(item => item.id !== id)
-    const currentItem = document.getElementById('time-register-item-' + id)
-
-    currentItem.classList.add('hide-item')
-    setTimeout(() => {
-      setTimeRegisterList(updatedList)
-    }, 1000)
-  }
 
   return (
     <>
       <Header />
-      <CSSTransition nodeRef={modalRef} in={isModalShow} timeout={300} classNames="open" unmountOnExit>
-        <Modal transitionRef={modalRef} isShow={isModalShow} closeModal={closeModal} confirmAction={handleModalConfirmation} title="Confirmación">
-          ¿Estás seguro de que deseas eliminar este registro?
-        </Modal>
-      </CSSTransition>
       <div className="container mt-3">
         <div className="grid">
           <div className="grid-12 grid-lg-9">
@@ -124,11 +86,18 @@ const Profile = () => {
                   </Button>
                   <p className="ps-3">Semana del 9 al 15 de octubre 2023</p>
                 </div>
-                <div className="d-flex align-items-center position-fixed bg-transparent-lg position-lg-static add-button-container z-index-3">
-                  <span className="me-2 d-none d-lg-block">Agregar Marcación</span>
-                  <Button variant="success" isSquare={true} className="">
-                    <Icon icon="plus" fix></Icon>
-                  </Button>
+                <div className="d-flex align-items-center ">
+                  <Modal>
+                    <ModalTrigger>
+                      <Button variant="success" isSquare={true} className="">
+                        <Icon classes={ 'me-md-2'} icon="plus" fix></Icon>
+                        <span className="d-none d-md-block">Agregar Marcación</span>
+                      </Button>
+                    </ModalTrigger>
+                    <ModalContent>
+                      <h1>Hola Mundo</h1>
+                    </ModalContent>
+                  </Modal>
                 </div>
               </div>
             </div>
