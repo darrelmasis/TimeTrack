@@ -8,9 +8,9 @@
     "start": "cd ./server && npm start",
     "client": "cd ./client && npm run dev",
     "lint-client": "eslint client/src/ --ext js,jsx --report-unused-disable-directives --max-warnings 0 && prettier --check client/src/**/*.jsx",
-    "lint-server": "eslint server/ --ext js,jsx --report-unused-disable-directives --max-warnings 0 && prettier --check server/**/*.jsx",
+    "lint-server": "eslint server/ --ext js --report-unused-disable-directives --max-warnings 0 && prettier --check server/**/*.js",
     "lintfix-client": "npx eslint --fix client/src/**/*.jsx",
-    "lintfix-server": "npx eslint --fix server/src/**/*.jsx",
+    "lintfix-server": "npx eslint --fix server/src/**/*.js",
     "format": "prettier --write --list-different src/**/*.jsx"
   },
   "engines": {
