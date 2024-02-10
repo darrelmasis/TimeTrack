@@ -1,21 +1,8 @@
 import { Icon } from '../commons/CustomIcons'
-import { Dropdown } from '../molecules/Dropdown'
+import { Dropdown, DropdownMenu, DropdownItem, DropdownTrigger } from '../molecules/Dropdown'
 import { Button } from '../atoms/Button'
-import { useState } from 'react'
 
-export const TimeRegister = ({ currentId, day, date, startTime, finishTime, activity, deleteOption }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const settingsMenuButton = (
-    <Button variant="text" isSquare={true} onClickCallBack={toggleDropdown}>
-      <Icon icon="ellipsis-vertical" fixedWidth />
-    </Button>
-  )
-
+export const TimeRegister = ({ currentId, day, date, startTime, finishTime, activity }) => {
   return (
     <div className="bg-container border rounded p-3 grid align-items-center mt-3" id={`time-register-item-${currentId}`}>
       {/* Día */}
@@ -26,22 +13,23 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
 
       {/* Menú de opciones */}
       <div className="grid-1 grid-lg-1 items-options-button d-flex align-items-center justify-content-flex-end">
-        {/* <Dropdown toggleButton={settingsMenuButton} isOpen={isOpen} setIsOpen={setIsOpen} size="small" position="left">
-          <div className="mt-2">
-            <div className="dropdown-item p-0 mb-2">
-              <Button variant="ghost-success" size="medium" className="w-100 border-none">
-                <Icon icon="pen-to-square" classes="me-2"></Icon>
-                <span>Editar</span>
-              </Button>
-            </div>
-            <div className="dropdown-item p-0">
-              <Button variant="ghost-danger" size="medium" className="w-100 border-none" onClickCallBack={deleteOption}>
-                <Icon icon="trash-can" classes="me-2"></Icon>
-                <span>Eliminar</span>
-              </Button>
-            </div>
-          </div>
-        </Dropdown> */}
+        <Dropdown>
+          <DropdownTrigger>
+            <Button variant={'text'} isSquare={true}>
+              <Icon icon={'ellipsis-vertical'}></Icon>
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu>
+            <DropdownItem>
+              <Icon icon={'pen-to-square'} classes="me-2" />
+              <span>Editar</span>
+            </DropdownItem>
+            <DropdownItem>
+              <Icon icon={'trash-can'} classes="me-2" />
+              <span>Eliminar</span>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
 
       {/* Jornada */}
