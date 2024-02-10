@@ -10,7 +10,7 @@
     "lint-client": "eslint client/src/ --ext js,jsx --report-unused-disable-directives --max-warnings 0 && prettier --check client/src/**/*.jsx",
     "lint-server": "eslint server/ --ext js --report-unused-disable-directives --max-warnings 0 && prettier --check server/**/*.js",
     "lintfix-client": "npx eslint --fix client/src/**/*.jsx",
-    "lintfix-server": "npx eslint --fix server/src/**/*.js",
+    "lintfix-server": "npx eslint --fix server/**/*.js",
     "format": "prettier --write --list-different src/**/*.jsx"
   },
   "engines": {
