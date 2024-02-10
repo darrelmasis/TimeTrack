@@ -19,4 +19,9 @@ module.exports = {
     ],
     'react/prop-types': 0,
   },
+  globals: {
+    "require": true,
+    "process": true,
+    "path": true
+  }
 }
