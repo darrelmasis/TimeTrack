@@ -1,53 +1,98 @@
-import { useEffect, useRef } from 'react'
+import React, { createContext, useContext, useState } from 'react'
+import classNames from 'classnames'
 import { Button } from '../atoms/Button'
 import { Icon } from '../commons/CustomIcons'
+import { useFloating, offset, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles, useClick, useTransitionStatus } from '@floating-ui/react'
 
-export const Modal = ({ transitionRef, isShow, closeModal, confirmAction, title, children }) => {
-  isShow ? document.documentElement.classList.add('overflow-hidden') : document.documentElement.classList.remove('overflow-hidden')
-  const modalRef = useRef(null)
+const ModalContext = createContext()
+export const useModalContext = () => useContext(ModalContext)
 
-  useEffect(() => {
-    const handleClickOutside = e => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
-        closeModal()
-      }
-    }
+const Modal = ({ children, classes }) => {
+  const componentClasses = classNames('modal', classes && classes)
+  const [isOpen, setIsOpen] = useState(false)
 
-    document.addEventListener('mousedown', handleClickOutside)
+  const openModal = () => setIsOpen(true)
+  const closeModal = () => setIsOpen(false)
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isShow])
+
+  const { refs, floatingStyles, context } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+
+    middleware: [offset(({ rects }) => {
+      return (
+        -rects.reference.height / 2 - rects.floating.height / 2 - 100
+      );
+    })],
+  })
+
+
+  const dismiss = useDismiss(context, {})
+  const click = useClick(context, {})
+  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss, click])
+
+  const contextValue = {
+    openModal,
+    closeModal,
+    refs,
+    floatingStyles,
+    getReferenceProps,
+    getFloatingProps,
+    context,
+    isOpen,
+  }
+
   return (
-    <div ref={transitionRef} className="modal-container position-fixed z-index-4">
-      <div className={`modal position-absolute ${isShow ? ' show' : ''}`}>
-        <div className="container" ref={modalRef}>
-          <div className="px-3 pt-1 pb-3 rounded border bg-container ">
-            <div className="modal-header d-flex justify-content-space-between">
-              <h5>{title}</h5>
-              <Button onClickCallBack={closeModal} isSquare={true}>
-                <Icon icon="x-mark"></Icon>
-              </Button>
-            </div>
+    <ModalContext.Provider value={contextValue}>
+      <div className={componentClasses}>{children}</div>
+    </ModalContext.Provider>
+  )
+}
 
-            <div className="modal-body mb-3">
-              {children}
-              {}
-            </div>
-
-            <div className="modal-footer grid justify-content-flex-end">
-              <Button variant="success" className="grid-12 grid-lg-6 py-4" onClickCallBack={closeModal}>
-                No, mantener registro
-              </Button>
-              <Button variant="danger" className="grid-12 grid-lg-6 py-4 p-lg-auto" onClickCallBack={confirmAction}>
-                Si, eliminar registro
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+const ModalTrigger = ({ children, classes }) => {
+  const componentClasses = classNames('modal-trigger', classes && classes)
+  const { openModal, refs, getReferenceProps } = useModalContext()
+  return (
+    <div className={componentClasses} ref={refs.setReference} {...getReferenceProps()} onClick={openModal}>
+      {children}
     </div>
   )
 }
+
+const ModalClose = () => {
+  const componentClasses = classNames('rounded-circle modal-close')
+  const { closeModal} = useModalContext()
+  return <Button size={'small'} variant={'danger'} classes={componentClasses} onClick={closeModal}><Icon icon={'x-mark'}></Icon></Button>
+}
+
+const ModalContent = ({ children, classes }) => {
+  const componentClasses = classNames('modal-content bg-container border rounded position-relative', classes && classes)
+  const { floatingStyles, getFloatingProps, getReferenceProps, context, refs } = useModalContext()
+  const { isMounted, styles } = useTransitionStyles(context, {
+    initial: {
+      marginBottom: '16px'
+    }
+  })
+
+  const { styles: overlayStyles } = useTransitionStyles(context, {})
+
+  const handleClick = (event) => {
+    // Detener la propagación del evento de clic para evitar que llegue al contenedor del modal
+    event.stopPropagation();
+  };
+
+  return (
+    isMounted && (
+      <FloatingOverlay className='modal-overlay' ref={refs.setReference} {...getReferenceProps()} lockScroll style={{ ...overlayStyles}}>
+        <div className="container">
+          <div className={componentClasses} ref={refs.setFloating} style={{ floatingStyles, ...styles }} onClick={handleClick} {...getFloatingProps()}>
+            <ModalClose></ModalClose>
+            {children}
+          </div>
+        </div>
+      </FloatingOverlay>
+    )
+  )
+}
+
+export { Modal, ModalTrigger, ModalContent }
