@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { usePageTitle } from '../../utils/helpersFunction'
 import { Header } from '../../components/organisms/Header'
 import { Icon } from '../../components/commons/CustomIcons'
@@ -9,7 +9,7 @@ import { Modal, ModalTrigger, ModalContent } from '../../components/organisms/Mo
 const Profile = () => {
   usePageTitle('Perfil')
 
-  const [timeRegisterList, setTimeRegisterList] = useState([
+  const [timeRegisterList] = useState([
     {
       id: 1,
       day: 'Domingo',
@@ -68,7 +68,6 @@ const Profile = () => {
     },
   ])
 
-
   return (
     <>
       <Header />
@@ -90,7 +89,7 @@ const Profile = () => {
                   <Modal>
                     <ModalTrigger>
                       <Button variant="success" isSquare={true} className="">
-                        <Icon classes={ 'me-md-2'} icon="plus" fix></Icon>
+                        <Icon classes={'me-md-2'} icon="plus" fix></Icon>
                         <span className="d-none d-md-block">Agregar Marcación</span>
                       </Button>
                     </ModalTrigger>
@@ -110,16 +109,7 @@ const Profile = () => {
               <div className="grid-5 small">Actividad Desarrollada</div>
             </div>
             {timeRegisterList.map(({ id, day, date, startTime, finishTime, activity }) => (
-              <TimeRegister
-                key={id}
-                day={day}
-                date={date}
-                startTime={startTime}
-                finishTime={finishTime}
-                activity={activity}
-                deleteOption={() => openModal(id)}
-                currentId={id}
-              ></TimeRegister>
+              <TimeRegister key={id} day={day} date={date} startTime={startTime} finishTime={finishTime} activity={activity} currentId={id}></TimeRegister>
             ))}
           </div>
           <div className="grid-12 grid-lg-3">
