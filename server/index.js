@@ -10,8 +10,8 @@ const cors = require('cors')
 
 app.use(cors())
 // Middleware para analizar el cuerpo de las solicitudes POST
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, '../client', 'dist')))
 

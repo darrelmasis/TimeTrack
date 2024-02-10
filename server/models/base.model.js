@@ -2,10 +2,9 @@ const { promisify } = require('util')
 const connection = require('../connection')
 const queryAsync = promisify(connection.query).bind(connection)
 
-const {cleanSpaces} = require('../utils/utilsFunctions')
+const { cleanSpaces } = require('../utils/utilsFunctions')
 
 const Base_model = {
-
   promise: async (query, data) => {
     try {
       const result = await queryAsync(query, data)
@@ -16,15 +15,16 @@ const Base_model = {
   },
 
   create: async (table, data) => {
-
     // Validación de los datos de entrada
     if (typeof table !== 'string' || !table.trim() || typeof data !== 'object' || Object.keys(data).length === 0) {
-      throw new Error('Parámetros no válidos para la operación de inserción.');
+      throw new Error('Parámetros no válidos para la operación de inserción.')
     }
 
     // Construcción de la consulta preparada
     const columns = Object.keys(data).join(',')
-    const placeholders = Object.values(data).map(() => '?').join(',')
+    const placeholders = Object.values(data)
+      .map(() => '?')
+      .join(',')
 
     const query = `INSERT INTO ${table} (${columns}) VALUES(${placeholders})`
 
@@ -39,61 +39,50 @@ const Base_model = {
     let tableColumns = ''
     if (columns) {
       if (!Array.isArray(columns)) {
-        throw new Error('Las columnas debe ser proporcionadas comoun array.');
+        throw new Error('Las columnas debe ser proporcionadas comoun array.')
       }
 
       if (columns.length > 1) {
-        tableColumns = `${columns.join(', ')}`;
+        tableColumns = `${columns.join(', ')}`
       } else {
-        tableColumns = columns[0];
+        tableColumns = columns[0]
       }
     }
 
-    let whereClause = '';
+    let whereClause = ''
     if (whereClauses) {
       if (!Array.isArray(whereClauses)) {
-        throw new Error('Las cláusulas WHERE deben ser proporcionadas como un array.');
+        throw new Error('Las cláusulas WHERE deben ser proporcionadas como un array.')
       }
 
       if (whereClauses.length > 1) {
-        whereClause = `WHERE ${whereClauses.join(' AND ')}`;
+        whereClause = `WHERE ${whereClauses.join(' AND ')}`
       } else {
-        whereClause = `WHERE ${whereClauses[0]}`;
+        whereClause = `WHERE ${whereClauses[0]}`
       }
     }
 
-    let joinStatements = '';
+    let joinStatements = ''
     if (joinClauses) {
       if (!Array.isArray(joinClauses)) {
-        throw new Error('Las cláusulas JOIN deben ser proporcionadas como un array.');
+        throw new Error('Las cláusulas JOIN deben ser proporcionadas como un array.')
       }
 
-      joinStatements = joinClauses.join(' ');
+      joinStatements = joinClauses.join(' ')
     }
 
-    let placeholders = '';
     if (data) {
       if (!Array.isArray(data)) {
-        throw new Error('Los datos deben ser proporcionados como un array.');
+        throw new Error('Los datos deben ser proporcionados como un array.')
       }
-      placeholders = data.length > 0 ? Array(data.length).fill('?').join(', ') : '';
     }
 
     // Construcción de la consulta preparada
-    const query = `SELECT ${columns} FROM ${table} ${joinStatements} ${whereClause}`;
+    const query = `SELECT ${tableColumns} FROM ${table} ${joinStatements} ${whereClause}`
 
     // Ejecución de la consulta
-    return Base_model.promise(cleanSpaces(query), data);
+    return Base_model.promise(cleanSpaces(query), data)
   },
-
-
-  update: async (table, data) => {
-
-  },
-
-  delete: async (table, data) => {
-
-  }
 }
 
 module.exports = Base_model

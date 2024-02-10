@@ -1,11 +1,9 @@
 const UserModel = require('../models/user_model')
 const { isEmpty, sanitizeString } = require('../utils/utilsFunctions')
 
-let response = {}
 const errors = []
 
 const User_controller = {
-
   signup: async (req, res) => {
     try {
       // 1. Recibir la información enviada desde el formulario de registro.
@@ -38,7 +36,7 @@ const User_controller = {
           if (errors.length > 0) {
             res.status(400).json(errors)
             errors.length = 0
-            return;
+            return
           }
         }
       } else {
@@ -52,10 +50,7 @@ const User_controller = {
     }
   },
 
-  signin: async () => {
-
-  },
-
+  signin: async () => {},
 }
 
 module.exports = User_controller
