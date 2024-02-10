@@ -2,7 +2,7 @@
  *
  */
 import { Fragment } from 'react'
-
+import classNames from 'classnames'
 class IconClass {
   constructor(viewBox, svg) {
     this.viewBox = viewBox
@@ -115,11 +115,11 @@ const svgsIcons = {
 
 export const Icon = ({ icon, classes, fix }) => {
   const svgRender = svgsIcons[icon] || svgsIcons.default
-
+  const componentClasses = classNames('icon', fix === 'size' ? 'icon-fixed-size' : 'icon-fixed-width', classes && classes)
   return (
     <svg
       viewBox={svgRender.viewBox}
-      className={`icon ${classes} ${fix === 'size' ? 'icon-fixed-size' : 'icon-fixed-width'}`}
+      className={componentClasses}
       xmlns="http://www.w3.org/2000/svg"
     >
       {svgRender.svg}
