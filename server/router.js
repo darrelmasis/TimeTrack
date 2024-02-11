@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { user, employee } = require('./controllers/base_controllers')
+const { user, employee } = require('./controllers/base.controller')
 
 router.route('*').get((req, res) => {
   res.sendFile(path.join(__dirname, '../client', 'dist', 'index.html'))
