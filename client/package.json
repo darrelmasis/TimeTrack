@@ -6,9 +6,6 @@
   "scripts": {
     "dev": "vite --host",
     "build": "npm run lint && vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0 && prettier --check src/**/*.jsx",
-    "lintfix": "npx eslint --fix src/**/*.jsx",
-    "format": "prettier --write --list-different src/**/*.jsx",
     "preview": "vite preview"
   },
   "dependencies": {
