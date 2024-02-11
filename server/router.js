@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const path = require('path');
 const { user, employee } = require('./controllers/base.controller')
 
 router.route('*').get((req, res) => {
