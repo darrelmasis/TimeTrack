@@ -1,4 +1,4 @@
-const UserModel = require('../models/user_model')
+const UserModel = require('../models/user.model')
 const { isEmpty, sanitizeString } = require('../utils/utilsFunctions')
 
 const errors = []
