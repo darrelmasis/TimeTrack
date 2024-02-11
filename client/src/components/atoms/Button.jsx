@@ -1,17 +1,20 @@
 import classNames from 'classnames'
 
-export const Button = ({ size, variant, isSquare, children, onClick, classes }) => {
+export const Button = ({ size, variant, isSquare, children, onClick, classes, disabled }) => {
   const buttonClasses = classNames('btn', size && `btn-${size}`, variant && `btn-${variant}`, isSquare && 'btn-square', classes)
 
+  const isDisabled = disabled ? true : false
+
   const handleOnclick = () => {
-    if (onClick) {
+    if (onClick && !isDisabled) {
       onClick()
     }
   }
 
   return (
-    <button type="button" className={buttonClasses} onClick={handleOnclick}>
+    <button type="button" disabled={isDisabled} className={buttonClasses} onClick={handleOnclick}>
       {children}
     </button>
   )
 }
+
