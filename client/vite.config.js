@@ -7,16 +7,16 @@ export default defineConfig({
   plugins: [react()],
   css: {
     postcss: {
-      plugins: [autoprefixer]
+      plugins: [autoprefixer],
     },
     preprocessorOptions: {
       scss: {
         sassOptions: {
           includesPaths: ['src/styles/'],
           outputStyle: 'expanded',
-          sourceMap: true
-        }
-      }
-    }
-  }
+          sourceMap: true,
+        },
+      },
+    },
+  },
 })
