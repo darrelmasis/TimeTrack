@@ -23,5 +23,13 @@ module.exports = {
     "require": true,
     "process": true,
     "path": true
-  }
+  },
+  overrides: [
+    {
+      files: ['server/**/*.js'],
+      parserOptions: {
+        sourceType:'script',
+      },
+    },
+  ]
 }

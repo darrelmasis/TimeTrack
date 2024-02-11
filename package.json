@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd ./server && npm start",
     "client": "cd ./client && npm run dev",
-    "lint-client": "eslint client/src/ --ext js,jsx --report-unused-disable-directives --max-warnings 0 && prettier --check client/src/**/*.jsx",
-    "lint-server": "eslint server/ --ext js --report-unused-disable-directives --max-warnings 0 && prettier --check server/**/*.js",
+    "lint-client": "eslint client/src/**/*.jsx --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint-server": "eslint server/**/*.js --ext js --report-unused-disable-directives --max-warnings 0",
     "lintfix-client": "npx eslint --fix client/src/**/*.jsx",
     "lintfix-server": "npx eslint --fix server/**/*.js",
-    "format": "prettier --write --list-different src/**/*.jsx"
+    "format": "prettier --write --list-different \"{client,server}/**/*.{js,jsx}\""
   },
   "engines": {
     "node": ">16.x"
