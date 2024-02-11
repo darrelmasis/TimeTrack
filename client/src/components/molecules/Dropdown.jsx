@@ -3,14 +3,14 @@ import classNames from 'classnames'
 import { useFloating, offset, useDismiss, useInteractions, FloatingArrow, arrow, useTransitionStyles, useMergeRefs, flip, autoUpdate } from '@floating-ui/react'
 import { useTheme } from '../commons/useTheme'
 
-const Dropdown = ({ children, classes }) => {
+const Dropdown = ({ children, placement = 'bottom-end', classes }) => {
   const [isOpen, setIsOpen] = useState(false)
   const componentClasses = classNames('dropdown', classes && classes, isOpen && 'open')
   const arrowRef = useRef(null)
   const menuRef = useRef(null)
 
   const { refs, floatingStyles, context } = useFloating({
-    placement: 'bottom-end',
+    placement: placement,
     strategy: 'absolute',
     middleware: [
       offset(7),

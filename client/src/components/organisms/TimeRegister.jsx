@@ -13,7 +13,7 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
 
       {/* Menú de opciones */}
       <div className="grid-1 grid-lg-1 items-options-button d-flex align-items-center justify-content-flex-end">
-        <Dropdown>
+        <Dropdown placement={'right'}>
           <DropdownTrigger>
             <Button variant={'text'} isSquare={true}>
               <Icon icon={'ellipsis-vertical'}></Icon>
