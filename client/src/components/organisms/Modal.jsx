@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from '../atoms/Button'
-import { useFloating, offset, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles, useClick } from '@floating-ui/react'
+import { useFloating, offset, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles } from '@floating-ui/react'
 
 const ModalContext = createContext()
 
@@ -14,7 +14,7 @@ const Modal = ({ children, classes }) => {
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  const { refs, floatingStyles, context } = useFloating({
+  const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
 
@@ -32,7 +32,6 @@ const Modal = ({ children, classes }) => {
     openModal,
     closeModal,
     refs,
-    floatingStyles,
     getReferenceProps,
     getFloatingProps,
     context,
@@ -59,14 +58,12 @@ const ModalTrigger = ({ children, classes }) => {
 const ModalClose = () => {
   const componentClasses = classNames('modal-close')
   const { closeModal } = useModalContext()
-  return (
-    <Button size={'small'} variant={'text'} classes={componentClasses} onClick={closeModal} icon={'x-mark'}/>
-  )
+  return <Button size={'small'} variant={'text'} classes={componentClasses} onClick={closeModal} icon={'x-mark'} />
 }
 
 const ModalContent = ({ children, classes }) => {
   const componentClasses = classNames('modal-content bg-container border rounded position-relative', classes && classes)
-  const { floatingStyles, getFloatingProps, getReferenceProps, context, refs } = useModalContext()
+  const { getFloatingProps, getReferenceProps, context, refs } = useModalContext()
   const { isMounted, styles } = useTransitionStyles(context, {
     initial: {
       marginBottom: '16px',
@@ -75,12 +72,11 @@ const ModalContent = ({ children, classes }) => {
 
   const { styles: overlayStyles } = useTransitionStyles(context, {})
 
-
   return (
     isMounted && (
-      <FloatingOverlay className="modal-overlay"  lockScroll style={{ ...overlayStyles }}>
-        <div className="container" ref={refs.setFloating} style={ styles } {...getFloatingProps()}>
-          <div className={componentClasses}   ref={refs.setReference} {...getReferenceProps()} >
+      <FloatingOverlay className="modal-overlay" lockScroll style={{ ...overlayStyles }}>
+        <div className="container" ref={refs.setFloating} style={styles} {...getFloatingProps()}>
+          <div className={componentClasses} ref={refs.setReference} {...getReferenceProps()}>
             <ModalClose></ModalClose>
             {children}
           </div>
