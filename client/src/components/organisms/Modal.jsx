@@ -27,8 +27,7 @@ const Modal = ({ children, classes }) => {
   })
 
   const dismiss = useDismiss(context, {})
-  const click = useClick(context, {})
-  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss, click])
+  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss])
 
   const contextValue = {
     openModal,
@@ -59,12 +58,10 @@ const ModalTrigger = ({ children, classes }) => {
 }
 
 const ModalClose = () => {
-  const componentClasses = classNames('rounded-circle modal-close')
+  const componentClasses = classNames('modal-close')
   const { closeModal } = useModalContext()
   return (
-    <Button size={'small'} variant={'danger'} classes={componentClasses} onClick={closeModal}>
-      <Icon icon={'x-mark'}></Icon>
-    </Button>
+    <Button size={'small'} variant={'text'} classes={componentClasses} onClick={closeModal} icon={'x-mark'}/>
   )
 }
 
@@ -86,9 +83,9 @@ const ModalContent = ({ children, classes }) => {
 
   return (
     isMounted && (
-      <FloatingOverlay className="modal-overlay" ref={refs.setReference} {...getReferenceProps()} lockScroll style={{ ...overlayStyles }}>
-        <div className="container">
-          <div className={componentClasses} ref={refs.setFloating} style={{ floatingStyles, ...styles }} onClick={handleClick} {...getFloatingProps()}>
+      <FloatingOverlay className="modal-overlay"  lockScroll style={{ ...overlayStyles }}>
+        <div className="container" ref={refs.setFloating} style={ styles } {...getFloatingProps()}>
+          <div className={componentClasses}   ref={refs.setReference} {...getReferenceProps()} >
             <ModalClose></ModalClose>
             {children}
           </div>
