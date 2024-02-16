@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from '../atoms/Button'
-import { Icon } from '../commons/CustomIcons'
 import { useFloating, offset, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles, useClick } from '@floating-ui/react'
 
 const ModalContext = createContext()
