@@ -76,10 +76,6 @@ const ModalContent = ({ children, classes }) => {
 
   const { styles: overlayStyles } = useTransitionStyles(context, {})
 
-  const handleClick = event => {
-    // Detener la propagación del evento de clic para evitar que llegue al contenedor del modal
-    event.stopPropagation()
-  }
 
   return (
     isMounted && (
