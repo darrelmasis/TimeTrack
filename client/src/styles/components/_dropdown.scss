@@ -121,10 +121,7 @@ $dropdown-item-dark-colors: (
   }
 
   &-item {
-    display: flex;
-    align-items: center;
     width: 100%;
-    padding: .5rem 1rem;
     border-radius: .375em;
     text-decoration: none;
     color: var(--dropdown-item-text-color);
@@ -144,7 +141,22 @@ $dropdown-item-dark-colors: (
       display: flex;
       align-items: center;
     }
+
+    
+    //la clase .content-wrapper se asigna al padre del contenido del .dropdown-item-content
+    &-content > .content-wrapper {
+      padding: .5rem 1rem;
+    }
   }
+
+  &-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    padding: .5rem 1rem;
+    align-items: center;
+  }
+
 
   &-divider {
     height: 0;

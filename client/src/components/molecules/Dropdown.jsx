@@ -1,13 +1,20 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState, createContext, useContext } from 'react'
 import classNames from 'classnames'
 import { useFloating, offset, useDismiss, useInteractions, FloatingArrow, arrow, useTransitionStyles, useMergeRefs, flip, autoUpdate } from '@floating-ui/react'
 import { useTheme } from '../commons/useTheme'
+import { Icon } from '../commons/CustomIcons'
+import { Link } from 'react-router-dom'
+
+const DropdownContext = createContext()
+const useDropdownContext = () => useContext(DropdownContext)
 
 const Dropdown = ({ children, placement = 'bottom-end', classes }) => {
   const [isOpen, setIsOpen] = useState(false)
   const componentClasses = classNames('dropdown', classes && classes, isOpen && 'open')
   const arrowRef = useRef(null)
   const menuRef = useRef(null)
+
+  const toggleDropdown = () => setIsOpen(!isOpen)
 
   const { refs, floatingStyles, context } = useFloating({
     placement: placement,
@@ -28,41 +35,38 @@ const Dropdown = ({ children, placement = 'bottom-end', classes }) => {
 
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss])
 
-  const handleIsOpen = () => setIsOpen(!isOpen)
-
-  const childrenWithProps = React.Children.map(children, child =>
-    React.isValidElement(child)
-      ? React.cloneElement(child, {
-          floatingRefs: refs,
-          floatingStyles: floatingStyles,
-          isOpen: isOpen,
-          handleIsOpen: handleIsOpen,
-          getReferenceProps: getReferenceProps,
-          getFloatingProps: getFloatingProps,
-          arrowRef: arrowRef,
-          context: context,
-          menuRef: menuRef,
-        })
-      : child
-  )
-
-  return <div className={componentClasses}>{childrenWithProps}</div>
-}
-
-const DropdownTrigger = ({ floatingRefs, children, classes, handleIsOpen, getReferenceProps }) => {
-  const componentClasses = classNames('dropdown-trigger', classes && classes)
-
-  const handleClick = () => handleIsOpen()
+  const contextValue = {
+    toggleDropdown,
+    refs,
+    floatingStyles,
+    getReferenceProps,
+    getFloatingProps,
+    arrowRef,
+    context,
+    menuRef,
+  }
 
   return (
-    <div className={componentClasses} onClick={handleClick} ref={floatingRefs.setReference} {...getReferenceProps()}>
+    <DropdownContext.Provider value={contextValue}>
+      <div className={componentClasses}>{children}</div>
+    </DropdownContext.Provider>
+  )
+}
+
+const DropdownTrigger = ({ children, classes }) => {
+  const componentClasses = classNames('dropdown-trigger', classes && classes)
+  const { refs, getReferenceProps, toggleDropdown } = useDropdownContext()
+
+  return (
+    <div className={componentClasses} onClick={toggleDropdown} ref={refs.setReference} {...getReferenceProps()}>
       {children}
     </div>
   )
 }
 
-const DropdownMenu = ({ floatingStyles, floatingRefs, children, classes, getFloatingProps, arrowRef, context, menuRef }) => {
+const DropdownMenu = ({ children, classes }) => {
   const componentClasses = classNames('dropdown-menu rounded border z-index-4 p-3', classes && classes)
+  const { refs, floatingStyles, arrowRef, menuRef, getFloatingProps, context } = useDropdownContext()
   const { isDarkMode } = useTheme()
   const arrowStyles = {
     fill: isDarkMode ? '#242526' : '#fff',
@@ -81,7 +85,7 @@ const DropdownMenu = ({ floatingStyles, floatingRefs, children, classes, getFloa
   })
 
   const combinedStyles = { ...styles, ...floatingStyles }
-  const combinedRefs = useMergeRefs([floatingRefs.setFloating, menuRef])
+  const combinedRefs = useMergeRefs([refs.setFloating, menuRef])
 
   return (
     isMounted && (
@@ -93,16 +97,41 @@ const DropdownMenu = ({ floatingStyles, floatingRefs, children, classes, getFloa
   )
 }
 
-const DropdownItem = ({ children, classes }) => {
-  const componentClasses = classNames('dropdown-item', classes && classes)
+const DropdownItem = ({ children, classes, type = 'link', icon, label, href }) => {
+  const typeClasses = {
+    link: 'dropdown-item',
+    text: 'dropdown-item-text',
+    content: 'dropdown-item dropdown-item-content',
+  }
+  const componentClasses = classNames(typeClasses[type], classes && classes)
+  const iconClasses = classNames('me-2')
+  const labelClasses = classNames('vertical-align-middle')
 
-  return <div className={componentClasses}>{children}</div>
-}
+  const iconComponent = icon ? <Icon icon={icon} classes={iconClasses} /> : null
+  const componentLabel = <span className={labelClasses}>{label}</span>
 
-const DropdownItemText = ({ children, classes }) => {
-  const componentClasses = classNames('dropdown-item-text mb-3', classes && classes)
+  const dropdownItemContent = (
+    <>
+      {iconComponent}
+      {componentLabel}
+    </>
+  )
 
-  return <div className={componentClasses}>{children}</div>
+  const linkType = (
+    <div className={componentClasses}>
+      <Link className="wrapper dropdown-link" to={href}>
+        {dropdownItemContent}
+      </Link>
+    </div>
+  )
+
+  const contentType = <div className={componentClasses}>{children}</div>
+
+  const textType = <div className={componentClasses}>{children}</div>
+
+  const typeOfItem = { link: linkType, content: contentType, text: textType }
+
+  return typeOfItem[type]
 }
 
 const DropdownDivider = classes => {
@@ -111,4 +140,4 @@ const DropdownDivider = classes => {
   return <div className={componentClasses} />
 }
 
-export { Dropdown, DropdownMenu, DropdownItem, DropdownItemText, DropdownTrigger, DropdownDivider }
+export { Dropdown, DropdownMenu, DropdownItem, DropdownTrigger, DropdownDivider }
