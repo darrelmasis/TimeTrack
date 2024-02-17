@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Dropdown, DropdownMenu, DropdownItem, DropdownItemText, DropdownTrigger, DropdownDivider } from '../molecules/Dropdown'
+import { Dropdown, DropdownMenu, DropdownItem, DropdownTrigger, DropdownDivider } from '../molecules/Dropdown'
 import { Avatar } from '../atoms/Avatar'
 import { Icon } from '../commons/CustomIcons'
 import { SwitchControl } from '../atoms/Switch'
@@ -26,7 +26,7 @@ export const Header = () => {
             </Button>
           </DropdownTrigger>
           <DropdownMenu>
-            <DropdownItemText>
+            <DropdownItem type="text" classes={'mb-3'}>
               <Avatar size="md" name={avatar.name} src={avatar.src} classes="me-2">
                 DM
               </Avatar>
@@ -36,29 +36,17 @@ export const Header = () => {
                   Analista de Control Interno
                 </div>
               </div>
-            </DropdownItemText>
-            <DropdownItem>
-              <Icon icon="circle-user" classes="me-2" />
-              <span>Perfil</span>
             </DropdownItem>
-
-            <DropdownItem>
-              <Icon icon="gears" classes="me-2" />
-              <span>Ajustes</span>
-            </DropdownItem>
-
-            <DropdownItem>
-              <SwitchControl variant="success" switchId="themeChanger">
+            <DropdownItem href={'/me'} icon={'circle-user'} label={'Perfil'} />
+            <DropdownItem href={'/settings'} icon={'gears'} label={'Ajustes'} />
+            <DropdownItem type="content">
+              <SwitchControl variant="success" switchId="themeChanger" classes={'content-wrapper'}>
                 <Icon icon="theme" classes="me-2" />
                 <span>Tema Oscuro</span>
               </SwitchControl>
             </DropdownItem>
-            <DropdownDivider />
-            <DropdownItem>
-              <Link to="/" className="text-danger">
-                <Icon icon="logout" classes="me-2" /> Cerrar Sesión
-              </Link>
-            </DropdownItem>
+            <DropdownDivider></DropdownDivider>
+            <DropdownItem href={'/logout'} icon={'logout'} label={'Cerrar Sesión'} />
           </DropdownMenu>
         </Dropdown>
       </nav>

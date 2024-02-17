@@ -15,21 +15,14 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
       <div className="grid-1 grid-lg-1 items-options-button d-flex align-items-center justify-content-flex-end">
         <Dropdown placement={'right'}>
           <DropdownTrigger>
-            <Button variant={'text'} isSquare={true}>
-              <Icon icon={'ellipsis-vertical'}></Icon>
-            </Button>
+            <Button variant={'text'} icon={'ellipsis-vertical'} />
           </DropdownTrigger>
           <DropdownMenu>
-            <DropdownItem>
-              <Icon icon={'pen-to-square'} classes="me-2" />
-              <span>Editar</span>
-            </DropdownItem>
-            <DropdownItem>
-              <Icon icon={'trash-can'} classes="me-2" />
-              <span>Eliminar</span>
-            </DropdownItem>
+            <DropdownItem href={''} icon={'pen-to-square'} label={'Editar'}/>
+            <DropdownItem href={''} icon={'trash-can'} label={'Eliminar'}/>
           </DropdownMenu>
         </Dropdown>
+
       </div>
 
       {/* Jornada */}
