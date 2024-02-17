@@ -5,11 +5,6 @@
   display: inline-block;
   font-size: 20px;
 
-  &-wrapper {
-    display: inherit;
-    vertical-align: middle;
-  }
-
   .btn-small & {
     font-size: 16px;
   }

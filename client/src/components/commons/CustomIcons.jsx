@@ -112,10 +112,9 @@ const svgsIcons = {
 export const Icon = ({ icon, classes }) => {
   const svgRender = svgsIcons[icon] || svgsIcons.default
   const componentClasses = classNames('icon', classes && classes)
-  const iconWrapperClasses = classNames('icon-wrapper')
   return (
-    <span className={iconWrapperClasses}>
-      <svg viewBox={svgRender.viewBox} className={componentClasses} xmlns="http://www.w3.org/2000/svg">
+    <span className={componentClasses}>
+      <svg viewBox={svgRender.viewBox} xmlns="http://www.w3.org/2000/svg">
         {svgRender.svg}
       </svg>
     </span>
