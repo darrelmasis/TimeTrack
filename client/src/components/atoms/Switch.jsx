@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '../commons/useTheme'
+import classNames from 'classnames'
 
 export const SwitchControl = ({ switchId, classes, children }) => {
   const { isDarkMode, toggleDarkMode } = useTheme()
@@ -32,13 +33,13 @@ export const SwitchControl = ({ switchId, classes, children }) => {
     }
   }, [])
 
+  const componentClasses = classNames('switch', classes && classes, isChecked && 'on')
+  
   return (
-    <div className={`switch ${classes ? classes : ''} ${isChecked ? 'on' : ''}`}>
-      <label htmlFor={switchId} className="switch-label">
-        <input type="checkbox" id={switchId} checked={isChecked} onChange={toggleSwitch} />
-        <div className="switch-label-text">{children}</div>
-        <div className="switch-slider" tabIndex="0"></div>
-      </label>
-    </div>
+    <label htmlFor={switchId} className={componentClasses}>
+      <input type="checkbox" id={switchId} checked={isChecked} onChange={toggleSwitch} />
+      <div className="switch-text">{children}</div>
+      <div className="switch-slider" tabIndex="0"></div>
+    </label>
   )
 }
