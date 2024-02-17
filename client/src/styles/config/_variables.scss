@@ -293,7 +293,7 @@ $spacers: (
 // Bordes
 $border-width: 1px;
 $border-style: solid;
-$border-radius: .375rem;
+$border-radius: .875rem;
 $border-radius-circle: 50%;
 $border-radius-pill: 50rem;
 
@@ -351,13 +351,14 @@ $font-sizes: (
 $btn-ratio: 1.3;
 $btn-width: auto;
 $btn-height: 2.5rem;
-$btn-line-height: 2;
-$btn-padding-y: .75rem;
-$btn-padding-x: 1.5rem;
+$btn-line-height: 1.5;
+$btn-padding-y: .5rem;
+$btn-padding-x: 1rem;
 $btn-small-fs: $small-fs;
 $btn-normal-fs: $fs-base;
 $btn-large-fs: $h6-fs;
-$btn-border-radius: .25rem;
+$btn-border-radius: .5rem;
+
 
 // Dropdown
 
