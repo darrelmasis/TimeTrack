@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { usePageTitle } from '../../utils/helpersFunction'
 import { Header } from '../../components/organisms/Header'
-import { Icon } from '../../components/commons/CustomIcons'
 import { TimeRegister } from '../../components/organisms/TimeRegister'
 import { Button } from '../../components/atoms/Button'
 import { Modal, ModalTrigger, ModalContent } from '../../components/organisms/Modal'
@@ -77,30 +76,24 @@ const Profile = () => {
             <div className="mb-2">
               <div className="d-flex align-items-center justify-content-space-between">
                 <div className="d-flex align-items-center">
-                  <Button variant="ghost-primary" className="disabled me-2">
-                    <Icon icon="arrow-left" />
-                  </Button>
-                  <Button variant="ghost-primary" className="me-2">
-                    <Icon icon="arrow-right" />
-                  </Button>
-                  <p className="ps-3">Semana del 9 al 15 de octubre 2023</p>
+                  <Button variant={'primary'} icon={'arrow-left'} classes="me-2" />
+                  <Button variant={'primary'} icon={'arrow-right'} classes="me-2" />
+                  <p className="">Semana del 9 al 15 de octubre 2023</p>
                 </div>
                 <div className="d-flex align-items-center ">
                   <Modal>
                     <ModalTrigger>
-                      <Button variant="success" isSquare={true} className="">
-                        <Icon classes={'me-md-2'} icon="plus" fix></Icon>
-                        <span className="d-none d-md-block">Agregar Marcación</span>
-                      </Button>
+                      <Button variant="success" icon={'plus'} label={'Nuevo'} />
                     </ModalTrigger>
                     <ModalContent>
-                      <h1>Hola Mundo</h1>
+                      <h1 contentEditable className="p-3">
+                        Hola Mundo
+                      </h1>
                     </ModalContent>
                   </Modal>
                 </div>
               </div>
             </div>
-
             <div className="mb-4">Registro de marcaciones y viáticos</div>
             <div className="mt-3 mb-2 text-muted pb-1 grid d-lg-grid d-none mx-3">
               <div className="grid-2 small">Día</div>
