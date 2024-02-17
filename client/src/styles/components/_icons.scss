@@ -1,15 +1,20 @@
 .icon {
+  width: 1em;
   height: 1em;
   fill: currentColor;
+  display: inline-block;
+  font-size: 20px;
 
-  &-fixed-size {
-    text-align: center;
-    width: 1.25em;
+  &-wrapper {
+    display: inherit;
   }
 
-  &-fixed-width {
-    text-align: center;
-    width: 1em;
+  .btn-small & {
+    font-size: 16px;
+  }
+
+  .btn-large & {
+    font-size: 24px;
   }
 
 }
