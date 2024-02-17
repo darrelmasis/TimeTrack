@@ -180,10 +180,9 @@ $buttons-colors-dark: (
 
 //Padding-y, padding-x, font-size, line-height
 $buttons-sizes: (
-  normal: ($btn-padding-y, $btn-padding-x, $btn-normal-fs, $btn-line-height),
-  square: ($btn-padding-y, $btn-padding-y, $btn-normal-fs, $btn-line-height),
-  large: (calc($btn-padding-y * $btn-ratio), calc($btn-padding-x * $btn-ratio), $btn-large-fs, $btn-line-height),
-  small: (calc($btn-padding-y / $btn-ratio), calc($btn-padding-x / $btn-ratio), $btn-small-fs, $btn-line-height)
+  small: (calc($btn-padding-y + 2px), 0.5rem, 0.875rem, 1),
+  medium: ($btn-padding-y, $btn-padding-x, 1rem, $btn-line-height),
+  large: (0.875rem, calc($btn-padding-x * $btn-ratio), 1.125rem, 1),
 );
 
 .btn {
@@ -223,6 +222,10 @@ $buttons-sizes: (
   cursor: pointer;
   vertical-align: middle;
   user-select: none;
+  position: relative;
+  box-sizing: border-box;
+  appearance: none;
+  letter-spacing: 0.02857em;
 
   &:hover {
     background-color: var(--btn-bg-hover);
@@ -239,7 +242,15 @@ $buttons-sizes: (
     cursor: not-allowed;
     opacity: .5;
   }
+
+  &:not(.btn-square) {
+    & .icon-wrapper {
+      margin-left: -3px;
+    }
+  }
 }
+
+
 
 body.dark .btn {
   @include button-initial(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main', 'dark'), get-button-state('initial', 'main-hover', 'dark'), get-button-state('initial', 'main-active', 'dark'), get-button-state('initial', 'text-color', 'dark'));
@@ -250,9 +261,6 @@ body.dark .btn {
     --btn-padding: #{nth($values, 1)} #{nth($values, 2)};
     --btn-font-size: #{nth($values, 3)};
     --btn-line-height: #{nth($values, 4)};
-    @if $size == "square" {
-      --btn-width: #{nth($values, 4)};
-    }
   }
 }
 
@@ -263,8 +271,9 @@ body.dark .btn {
 }
 
 @each $theme-color, $theme-value in $button-theme-colors {
-  .btn-ghost-#{$theme-color} {
+  .btn-#{$theme-color}-ghost {
     @include button-ghost-variant($theme-value, get-button-state($theme-color, 'main'), get-button-state($theme-color, 'main-hover-ghost'), get-button-state($theme-color, 'main-active-ghost'), get-button-state($theme-color, 'text-color'), get-button-state($theme-color, 'text-color-ghost'));
+    --btn-padding: calc(#{$btn-padding-y} - 1px) #{$btn-padding-x};
   } 
 }
 
@@ -275,7 +284,7 @@ body.dark .btn {
 }
 
 @each $theme-color, $theme-value in $button-theme-colors {
-  body.dark .btn-ghost-#{$theme-color} {
+  body.dark .btn-#{$theme-color}-ghost {
     @include button-ghost-variant($theme-value, get-button-state($theme-color, 'main-ghost', 'dark'), get-button-state($theme-color, 'main-hover-ghost', 'dark'), get-button-state($theme-color, 'main-active-ghost', 'dark'), get-button-state($theme-color, 'text-color-ghost', 'dark'), get-button-state($theme-color, 'text-color-ghost', 'dark'));
   } 
 }
@@ -286,4 +295,16 @@ body.dark .btn {
 
 body.dark .btn-text {
   @include button-text-variant(map-get($button-theme-colors, 'secondary'), get-button-state('initial', 'main', 'dark'), get-button-state('initial', 'main-hover', 'dark'), get-button-state('initial', 'main-active', 'dark'), get-button-state('initial', 'text-color', 'dark'));
+}
+
+// Arregla el tamaño en padding cuando el botón está en forma square
+
+.btn-square {
+  &.btn-small, &.btn-medium {
+    --btn-padding: calc(#{$btn-padding-y} + 2px) calc(#{$btn-padding-y} + 2px);
+  }
+
+  &.btn-large {
+    --btn-padding: calc(#{$btn-padding-y} + 6px) calc(#{$btn-padding-y} + 6px);
+  }
 }
