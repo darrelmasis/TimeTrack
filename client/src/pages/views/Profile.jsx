@@ -83,10 +83,10 @@ const Profile = () => {
                 <div className="d-flex align-items-center ">
                   <Modal>
                     <ModalTrigger>
-                      <Button variant="success" icon={'plus'} label={'Nuevo'} />
+                      <Button variant="success" icon={'plus'} label={'Nuevo'}/>
                     </ModalTrigger>
                     <ModalContent>
-                      <h1 contentEditable className="p-3">
+                      <h1 className="p-3">
                         Hola Mundo
                       </h1>
                     </ModalContent>
