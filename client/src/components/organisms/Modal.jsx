@@ -17,12 +17,6 @@ const Modal = ({ children, classes }) => {
   const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-
-    middleware: [
-      offset(({ rects }) => {
-        return -rects.reference.height / 2 - rects.floating.height / 2 - 100
-      }),
-    ],
   })
 
   const dismiss = useDismiss(context, {})
@@ -49,7 +43,7 @@ const ModalTrigger = ({ children, classes }) => {
   const componentClasses = classNames('modal-trigger', classes && classes)
   const { openModal, refs, getReferenceProps } = useModalContext()
   return (
-    <div className={componentClasses} ref={refs.setReference} {...getReferenceProps()} onClick={openModal}>
+    <div className={componentClasses} onClick={openModal}>
       {children}
     </div>
   )
@@ -66,7 +60,7 @@ const ModalContent = ({ children, classes }) => {
   const { getFloatingProps, getReferenceProps, context, refs } = useModalContext()
   const { isMounted, styles } = useTransitionStyles(context, {
     initial: {
-      marginBottom: '16px',
+      marginTop: `${76-16}px`,
     },
   })
 
