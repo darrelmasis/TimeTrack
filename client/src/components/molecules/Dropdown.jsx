@@ -77,7 +77,7 @@ const DropdownMenu = ({ children, classes }) => {
   const { isMounted, styles } = useTransitionStyles(context, {
     initial: {
       opacity: 0,
-      marginTop: '-15px',
+      marginTop: '-16px',
     },
     common: {
       transformOrigin: 'top',
