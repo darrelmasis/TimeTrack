@@ -34,7 +34,7 @@ export const SwitchControl = ({ switchId, classes, children }) => {
   }, [])
 
   const componentClasses = classNames('switch', classes && classes, isChecked && 'on')
-  
+
   return (
     <label htmlFor={switchId} className={componentClasses}>
       <input type="checkbox" id={switchId} checked={isChecked} onChange={toggleSwitch} />
