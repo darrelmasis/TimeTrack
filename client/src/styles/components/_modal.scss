@@ -29,4 +29,12 @@
     top: 0.5rem;
     right: 0.5rem;
   }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
 }

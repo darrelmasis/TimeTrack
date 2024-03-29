@@ -7,10 +7,8 @@ const ModalContext = createContext()
 
 const useModalContext = () => useContext(ModalContext)
 
-const Modal = ({ children, classes }) => {
+const Modal = ({ children, classes, isOpen, setIsOpen }) => {
   const componentClasses = classNames('modal', classes && classes)
-  const [isOpen, setIsOpen] = useState(false)
-
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
@@ -18,6 +16,7 @@ const Modal = ({ children, classes }) => {
     open: isOpen,
     onOpenChange: setIsOpen,
   })
+  const { isMounted } = useTransitionStyles(context)
 
   const dismiss = useDismiss(context, {})
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss])
@@ -33,15 +32,17 @@ const Modal = ({ children, classes }) => {
   }
 
   return (
-    <ModalContext.Provider value={contextValue}>
-      <div className={componentClasses}>{children}</div>
-    </ModalContext.Provider>
+    isMounted && (
+      <ModalContext.Provider value={contextValue}>
+        <div className={componentClasses}>{children}</div>
+      </ModalContext.Provider>
+    )
   )
 }
 
 const ModalTrigger = ({ children, classes }) => {
   const componentClasses = classNames('modal-trigger', classes && classes)
-  const { openModal, refs, getReferenceProps } = useModalContext()
+  const { openModal } = useModalContext()
   return (
     <div className={componentClasses} onClick={openModal}>
       {children}
@@ -56,11 +57,60 @@ const ModalClose = () => {
 }
 
 const ModalContent = ({ children, classes }) => {
-  const componentClasses = classNames('modal-content bg-container border rounded position-relative', classes && classes)
+  const componentClasses = classNames('modal-content ', classes && classes)
+
+  return <div className={componentClasses}>{children}</div>
+}
+
+const ModalHeader = ({ title }) => {
+  const componentClasses = classNames('modal-header mt-0')
+  return <h4 className={componentClasses}>{title}</h4>
+}
+
+const ModalFooter = ({ action = {} }) => {
+  const componentClasses = classNames('modal-footer')
+  const { closeModal } = useModalContext()
+
+  const { success, cancel } = action
+
+  const handleSuccess = () => {
+    success && success()
+    // closeModal()
+    alert('Registro exitoso')
+  }
+
+  const handleCancel = () => {
+    cancel && cancel()
+    closeModal()
+  }
+
+  const createModalFooter = content => {
+    <div className={componentClasses}>
+      {content}
+    </div>
+  }
+  
+  <div className={componentClasses}>
+    <Button variant={''} label={'Cancelar'} onClick={handleCancel} />
+    <Button variant={'success'} label={'Guardar'} onClick={handleSuccess} autoFocus={true} />
+  </div>
+  
+  const contentType = {
+    create: {
+      
+    }
+  }
+  return (
+    createModalFooter(contentType[type])
+  )
+}
+
+const ModalBody = ({ children }) => {
+  const componentClasses = classNames('modal-body bg-container border rounded p-3 position-relative')
   const { getFloatingProps, getReferenceProps, context, refs } = useModalContext()
   const { isMounted, styles } = useTransitionStyles(context, {
     initial: {
-      marginTop: `${76-16}px`,
+      marginTop: `${76 - 16}px`,
     },
   })
 
@@ -80,4 +130,6 @@ const ModalContent = ({ children, classes }) => {
   )
 }
 
-export { Modal, ModalTrigger, ModalContent }
+
+
+export { Modal, ModalHeader, ModalFooter, ModalBody, ModalTrigger, ModalContent }

@@ -3,11 +3,12 @@ import { usePageTitle } from '../../utils/helpersFunction'
 import { Header } from '../../components/organisms/Header'
 import { TimeRegister } from '../../components/organisms/TimeRegister'
 import { Button } from '../../components/atoms/Button'
-import { Modal, ModalTrigger, ModalContent } from '../../components/organisms/Modal'
+import { Modal, ModalHeader, ModalFooter, ModalBody, ModalTrigger, ModalContent } from '../../components/organisms/Modal'
+import * as Form from '../../components/atoms/Form'
 
 const Profile = () => {
   usePageTitle('Perfil')
-
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [timeRegisterList] = useState([
     {
       id: 1,
@@ -67,9 +68,66 @@ const Profile = () => {
     },
   ])
 
+  const [values, setValues] = useState({
+    clockIn: '',
+    clockOut: '',
+    activity: '',
+  })
+
+  const { clockIn, clockOut, activity } = values
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(values)
+  }
+
+  const handleChange = e => {
+    const { target } = e
+    const { name, value } = target
+
+    const newValues = {
+      ...values,
+      [name]: value,
+    }
+
+    setValues(newValues)
+    console.log(values)
+  }
+
   return (
     <>
       <Header />
+      <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+        <ModalBody>
+          <ModalHeader title={'Registra una nueva actividad'} />
+          <ModalContent>
+            <form onSubmit={handleSubmit} className='form'>
+              <div className="grid mb-3">
+                <div className="grid-6">
+                  <label htmlFor="clockIn" className='form-label'>Entrada</label>
+                  <input type="time" className="form-control" name="clockIn" id="clockIn" value={clockIn} onChange={handleChange} />
+                </div>
+                <div className="grid-6">
+                  <label htmlFor="clockOut" className='form-label'>Salida</label>
+                  <input type="time" className="form-control" name="clockOut" id="clockOut" value={clockOut} onChange={handleChange} />
+                </div>
+              </div>
+              {/* <label htmlFor="activity" className='form-label'>Actividad Desarrollada</label>
+                          <input
+                            type="text"
+                            autoComplete="off"
+                            className="form-control"
+                            name="activity"
+                            id="activity"
+                            value={activity}
+                            onChange={handleChange} placeholder='Inventario - CEDIS León' /> */}
+
+              <Form.FormInput label='Actividad Desarrollada' />
+            </form>
+          </ModalContent>
+          <ModalFooter />
+        </ModalBody>
+      </Modal>
       <div className="container mt-3">
         <div className="grid">
           <div className="grid-12 grid-lg-9">
@@ -81,16 +139,9 @@ const Profile = () => {
                   <p className="">Semana del 9 al 15 de octubre 2023</p>
                 </div>
                 <div className="d-flex align-items-center ">
-                  <Modal>
-                    <ModalTrigger>
-                      <Button variant="success" icon={'plus'} label={'Nuevo'}/>
-                    </ModalTrigger>
-                    <ModalContent>
-                      <h1 className="p-3">
-                        Hola Mundo
-                      </h1>
-                    </ModalContent>
-                  </Modal>
+
+                  <Button variant="success" icon={'plus'} label={'Nuevo'} onClick={() => setIsModalOpen(true)} />
+
                 </div>
               </div>
             </div>

@@ -103,6 +103,7 @@ const DropdownItem = ({ children, classes, type = 'link', icon, label, href }) =
     text: 'dropdown-item-text',
     content: 'dropdown-item dropdown-item-content',
   }
+  const { toggleDropdown } = useDropdownContext()
   const componentClasses = classNames(typeClasses[type], classes && classes)
   const iconClasses = classNames('me-2')
   const labelClasses = classNames('vertical-align-middle')
@@ -117,21 +118,24 @@ const DropdownItem = ({ children, classes, type = 'link', icon, label, href }) =
     </>
   )
 
-  const linkType = (
-    <div className={componentClasses}>
-      <Link className="wrapper dropdown-link" to={href}>
-        {dropdownItemContent}
-      </Link>
+  const createDropdownItem = (content) => (
+    <div className={componentClasses} onClick={toggleDropdown}>
+      {content}
     </div>
-  )
+  );
 
-  const contentType = <div className={componentClasses}>{children}</div>
+  const linkType = createDropdownItem(
+    <Link className="wrapper dropdown-link" to={href}>
+      {dropdownItemContent}
+    </Link>
+  );
 
-  const textType = <div className={componentClasses}>{children}</div>
+  const contentType = createDropdownItem(children);
+  const textType = createDropdownItem(children);
 
-  const typeOfItem = { link: linkType, content: contentType, text: textType }
+  const typeOfItem = { link: linkType, content: contentType, text: textType };
 
-  return typeOfItem[type]
+  return typeOfItem[type];
 }
 
 const DropdownDivider = classes => {

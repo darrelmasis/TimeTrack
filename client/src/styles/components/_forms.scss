@@ -1,0 +1,50 @@
+$form-theme-colors:(
+  primary: $blues,
+  secondary: $grays,
+  danger: $reds,
+  warning: $yellows,
+  success: $greens,
+  light: $lights,
+  dark: $darks
+);
+
+$form-colors: (
+  primary: (
+    hover
+    active
+    focus
+
+  )
+);
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &-label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+  }
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: $line-height-base;
+  color: var(--body-color);
+  background-color: var(--body-bg);
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  outline: none;
+
+  @include screen('max', 'md') {
+    & {
+      padding: 1rem 1.5rem;
+    }
+  }
+}
