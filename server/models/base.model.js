@@ -10,7 +10,7 @@ const Base_model = {
       const result = await queryAsync(query, data)
       return result
     } catch (error) {
-      console.log(error)
+      throw new Error(error.message)
     }
   },
 
@@ -29,24 +29,18 @@ const Base_model = {
     const query = `INSERT INTO ${table} (${columns}) VALUES(${placeholders})`
 
     // Ejecución de la consulta
-    const query_data = Object.values(data)
-    return Base_model.promise(cleanSpaces(query), query_data)
+    return Base_model.promise(cleanSpaces(query), Object.values(data))
   },
 
   read: async (table, columns, whereClauses, joinClauses, data) => {
     // Validación de los datos de entrada
 
-    let tableColumns = ''
+    let selectedColumns = ''
     if (columns) {
       if (!Array.isArray(columns)) {
-        throw new Error('Las columnas debe ser proporcionadas comoun array.')
+        throw new Error('Las columnas deben ser proporcionadas como un array.')
       }
-
-      if (columns.length > 1) {
-        tableColumns = `${columns.join(', ')}`
-      } else {
-        tableColumns = columns[0]
-      }
+      selectedColumns = columns.join(', ')
     }
 
     let whereClause = ''
@@ -54,12 +48,7 @@ const Base_model = {
       if (!Array.isArray(whereClauses)) {
         throw new Error('Las cláusulas WHERE deben ser proporcionadas como un array.')
       }
-
-      if (whereClauses.length > 1) {
-        whereClause = `WHERE ${whereClauses.join(' AND ')}`
-      } else {
-        whereClause = `WHERE ${whereClauses[0]}`
-      }
+      whereClause = `WHERE ${whereClauses.join(' AND ')}`
     }
 
     let joinStatements = ''
@@ -67,18 +56,15 @@ const Base_model = {
       if (!Array.isArray(joinClauses)) {
         throw new Error('Las cláusulas JOIN deben ser proporcionadas como un array.')
       }
-
       joinStatements = joinClauses.join(' ')
     }
 
-    if (data) {
-      if (!Array.isArray(data)) {
-        throw new Error('Los datos deben ser proporcionados como un array.')
-      }
+    if (data && !Array.isArray(data)) {
+      throw new Error('Los datos deben ser proporcionados como un array.')
     }
 
     // Construcción de la consulta preparada
-    const query = `SELECT ${tableColumns} FROM ${table} ${joinStatements} ${whereClause}`
+    const query = `SELECT ${selectedColumns || '*'} FROM ${table} ${joinStatements} ${whereClause}`
 
     // Ejecución de la consulta
     return Base_model.promise(cleanSpaces(query), data)
