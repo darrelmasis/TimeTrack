@@ -32,7 +32,7 @@ const Base_model = {
     return Base_model.promise(cleanSpaces(query), Object.values(data))
   },
 
-  read: async (table, columns, whereClauses, joinClauses, data) => {
+  read: async (table, columns, whereClauses, joinClauses, data, orderByColumn, orderByDirection) => {
     // Validación de los datos de entrada
 
     let selectedColumns = ''
@@ -63,8 +63,18 @@ const Base_model = {
       throw new Error('Los datos deben ser proporcionados como un array.')
     }
 
+    let orderByClause = ''
+    if (orderByColumn) {
+      let validDirections = ['ASC', 'DESC'];
+      let direction = orderByDirection ? orderByDirection.toUpperCase() : 'ASC';
+      if (!validDirections.includes(direction)) {
+        throw new Error('La dirección de ordenamiento debe ser "ASC" o "DESC".');
+      }
+      orderByClause = `ORDER BY ${orderByColumn} ${direction}`
+    }
+
     // Construcción de la consulta preparada
-    const query = `SELECT ${selectedColumns || '*'} FROM ${table} ${joinStatements} ${whereClause}`
+    const query = `SELECT ${selectedColumns || '*'} FROM ${table} ${joinStatements} ${whereClause} ${orderByClause}`
 
     // Ejecución de la consulta
     return Base_model.promise(cleanSpaces(query), data)

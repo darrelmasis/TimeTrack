@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd ./server && npm start",
+    "server": "cd ./server && nodemon ./src/index.js",
     "client": "cd ./client && npm run dev",
     "lint-client": "eslint client/src/**/*.jsx --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint-server": "eslint server/**/*.js --ext js --report-unused-disable-directives --max-warnings 0",
@@ -29,6 +30,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "nodemon": "^3.1.0",
     "prettier": "^3.2.4"
   }
 }

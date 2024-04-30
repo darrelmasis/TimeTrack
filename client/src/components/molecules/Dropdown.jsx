@@ -118,24 +118,24 @@ const DropdownItem = ({ children, classes, type = 'link', icon, label, href }) =
     </>
   )
 
-  const createDropdownItem = (content) => (
+  const createDropdownItem = content => (
     <div className={componentClasses} onClick={toggleDropdown}>
       {content}
     </div>
-  );
+  )
 
   const linkType = createDropdownItem(
     <Link className="wrapper dropdown-link" to={href}>
       {dropdownItemContent}
     </Link>
-  );
+  )
 
-  const contentType = createDropdownItem(children);
-  const textType = createDropdownItem(children);
+  const contentType = createDropdownItem(children)
+  const textType = createDropdownItem(children)
 
-  const typeOfItem = { link: linkType, content: contentType, text: textType };
+  const typeOfItem = { link: linkType, content: contentType, text: textType }
 
-  return typeOfItem[type];
+  return typeOfItem[type]
 }
 
 const DropdownDivider = classes => {

@@ -1,23 +1,30 @@
 import { Icon } from '../commons/CustomIcons'
 import { Dropdown, DropdownMenu, DropdownItem, DropdownTrigger } from '../molecules/Dropdown'
 import { Button } from '../atoms/Button'
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger, ModalHeader } from './Modal'
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from './Modal'
 import { useState } from 'react'
 
 export const TimeRegister = ({ currentId, day, date, startTime, finishTime, activity }) => {
-
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [iseditModalOpen, setIsEditModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   return (
     <>
-      <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+      <Modal isOpen={iseditModalOpen} setIsOpen={setIsEditModalOpen}>
         <ModalBody>
-          <ModalHeader title={'¿Deseas eliminar este registro?'} />
-          <ModalContent>
-            Hola a todos desde mi modal
-          </ModalContent>
-          <ModalFooter type={'delete'}/>
+          <ModalHeader title={'Editar registro'} />
+          <ModalContent>editando...</ModalContent>
+          <ModalFooter type={'edit'} />
         </ModalBody>
       </Modal>
+
+      <Modal isOpen={isDeleteModalOpen} setIsOpen={setIsDeleteModalOpen}>
+        <ModalBody>
+          <ModalHeader title={'¿Deseas eliminar este registro?'} />
+          <ModalContent>Hola a todos desde mi modal</ModalContent>
+          <ModalFooter type={'delete'} />
+        </ModalBody>
+      </Modal>
+
       <div className="bg-container border rounded p-3 grid align-items-center mt-3" id={`time-register-item-${currentId}`}>
         {/* Día */}
         <div className="grid-11 grid-lg-2 d-flex flex-direction-column mt-lg-3">
@@ -33,10 +40,10 @@ export const TimeRegister = ({ currentId, day, date, startTime, finishTime, acti
             </DropdownTrigger>
             <DropdownMenu>
               <DropdownItem type={'content'} classes={'mb-1'}>
-                <Button classes={'w-100 justify-content-flex-start'} icon={'pen-to-square'} label={'Editar'} onClick={alert} />
+                <Button classes={'w-100 justify-content-flex-start'} icon={'pen-to-square'} label={'Editar'} onClick={() => setIsEditModalOpen(true)} />
               </DropdownItem>
               <DropdownItem type={'content'}>
-                <Button classes={'w-100 justify-content-flex-start'} icon={'trash-can'} label={'Eliminar'} onClick={() => setIsModalOpen(true)} />
+                <Button classes={'w-100 justify-content-flex-start'} icon={'trash-can'} label={'Eliminar'} onClick={() => setIsDeleteModalOpen(true)} />
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

@@ -54,3 +54,14 @@
   transition-delay: 300ms;
   opacity: 0;
 }
+
+
+.sticky{
+  position: sticky;
+  top: calc(77px + 1rem);
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+}

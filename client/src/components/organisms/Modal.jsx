@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
 import classNames from 'classnames'
 import { Button } from '../atoms/Button'
-import { useFloating, offset, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles } from '@floating-ui/react'
+import { useFloating, useDismiss, useInteractions, FloatingOverlay, useTransitionStyles } from '@floating-ui/react'
 
 const ModalContext = createContext()
 
@@ -67,7 +67,7 @@ const ModalHeader = ({ title }) => {
   return <h4 className={componentClasses}>{title}</h4>
 }
 
-const ModalFooter = ({ action = {} }) => {
+const ModalFooter = ({ action = {}, type, formId }) => {
   const componentClasses = classNames('modal-footer')
   const { closeModal } = useModalContext()
 
@@ -76,7 +76,6 @@ const ModalFooter = ({ action = {} }) => {
   const handleSuccess = () => {
     success && success()
     // closeModal()
-    alert('Registro exitoso')
   }
 
   const handleCancel = () => {
@@ -84,25 +83,37 @@ const ModalFooter = ({ action = {} }) => {
     closeModal()
   }
 
-  const createModalFooter = content => {
-    <div className={componentClasses}>
-      {content}
-    </div>
-  }
-  
-  <div className={componentClasses}>
-    <Button variant={''} label={'Cancelar'} onClick={handleCancel} />
-    <Button variant={'success'} label={'Guardar'} onClick={handleSuccess} autoFocus={true} />
-  </div>
-  
   const contentType = {
-    create: {
-      
-    }
+    delete: (
+      <>
+        <Button variant={''} label={'Cancelar'} onClick={handleCancel} form />
+        <Button type="submit" form={formId} variant={'danger'} label={'Eliminar'} onClick={handleSuccess} autoFocus={true} />
+      </>
+    ),
+    save: (
+      <>
+        <Button variant={''} label={'Cancelar'} onClick={handleCancel} />
+        <Button type="submit" form={formId} variant={'success'} label={'Guardar'} onClick={handleSuccess} autoFocus={true} />
+      </>
+    ),
+    edit: (
+      <>
+        <Button variant={''} label={'Cancelar'} onClick={handleCancel} />
+        <Button type="submit" form={formId} variant={'success'} label={'Guardar Cambios'} onClick={handleSuccess} autoFocus={true} />
+      </>
+    ),
+    info: (
+      <div className="w-100 text-center">
+        <Button variant={'primary'} label={'Aceptar'} onClick={handleSuccess} autoFocus={true} />
+      </div>
+    ),
   }
-  return (
-    createModalFooter(contentType[type])
-  )
+
+  const createModalFooter = content => {
+    return <div className={componentClasses}>{content}</div>
+  }
+
+  return createModalFooter(contentType[type] || contentType.info)
 }
 
 const ModalBody = ({ children }) => {
@@ -129,7 +140,5 @@ const ModalBody = ({ children }) => {
     )
   )
 }
-
-
 
 export { Modal, ModalHeader, ModalFooter, ModalBody, ModalTrigger, ModalContent }

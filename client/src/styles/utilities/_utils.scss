@@ -56,6 +56,12 @@ $flexbox-classes: (
     class: overflow,
     values: visible hidden clip scroll auto
   ),
+  "grid-gap": (
+    property: gap,
+    class: gap,
+    values: 1 2 3 4 5,
+    measurement: 'rem'
+  )
 );
 
 @each $property-name, $property-values in $flexbox-classes {

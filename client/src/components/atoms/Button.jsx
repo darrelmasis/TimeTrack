@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Icon } from '../commons/CustomIcons'
 
-export const Button = ({ size = 'medium', variant, onClick, disabled, icon, label, children, classes, autoFocus }) => {
+export const Button = ({ size = 'medium', variant, onClick, disabled, icon, label, children, classes, autoFocus, type = 'button', ...rest }) => {
   const sizeToIconClass = {
     small: 'me-1',
     medium: 'me-2',
@@ -32,7 +32,7 @@ export const Button = ({ size = 'medium', variant, onClick, disabled, icon, labe
   )
 
   return (
-    <button type="button" disabled={isDisabled} className={buttonClasses} onClick={handleOnclick} autoFocus={autoFocus}>
+    <button type={type} disabled={isDisabled} className={buttonClasses} onClick={handleOnclick} autoFocus={autoFocus} {...rest}>
       {buttonContent}
     </button>
   )

@@ -4,14 +4,13 @@ const http = require('http')
 const server = http.createServer(app)
 const port = process.env.PORT || 3000
 const path = require('path')
-const bodyParser = require('body-parser')
 const router = require('./router')
 const cors = require('cors')
 
 app.use(cors())
-// Middleware para analizar el cuerpo de las solicitudes POST
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+// Middleware para analizar el cuerpo d e las solicitudes POST
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, '../client', 'dist')))
 

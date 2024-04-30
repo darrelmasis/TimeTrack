@@ -11,7 +11,7 @@ export const Header = () => {
     src: 'src/assets/images/d46112842.png',
   }
   return (
-    <header className="main-header bg-container border-bottom">
+    <header className="main-header bg-container border-bottom z-index-3">
       <nav className="navbar container py-3">
         <Link to="/" className="navbar-brand">
           TimeTrack
@@ -38,6 +38,7 @@ export const Header = () => {
               </div>
             </DropdownItem>
             <DropdownItem href={'/me'} icon={'circle-user'} label={'Perfil'} />
+            <DropdownItem href={'/me'} icon={'circle-user'} label={'Marcaciones'} />
             <DropdownItem href={'/settings'} icon={'gears'} label={'Ajustes'} />
             <DropdownItem type="content">
               <SwitchControl variant="success" switchId="themeChanger" classes={'content-wrapper'}>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const appName = 'TimeTrack'
 
@@ -13,4 +13,25 @@ const usePageTitle = pageTitle => {
   }, [pageTitle])
 }
 
-export { usePageTitle }
+const isOnline = () => {
+  const [onlineStatus, setOnlineStatus] = useState(navigator.onLine)
+
+  useEffect(() => {
+    const handleConnectionChange = () => {
+      setOnlineStatus(navigator.onLine)
+    }
+
+    window.addEventListener('online', handleConnectionChange)
+    window.addEventListener('offline', handleConnectionChange)
+
+    return () => {
+      window.removeEventListener('online', handleConnectionChange)
+      window.removeEventListener('offline', handleConnectionChange)
+    }
+  }, [])
+
+  console.log(onlineStatus)
+  // return onlineStatus
+}
+
+export { usePageTitle, isOnline }

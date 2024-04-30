@@ -1,3 +1,4 @@
+const moment = require('moment')
 /**
  * Simplifica la cadena eliminando espacios duplicados y trimea al inicio y al final
  * @param {string} str
@@ -50,4 +51,18 @@ const sanitizeString = inputString => {
   return finalString
 }
 
-module.exports = { cleanSpaces, isEmpty, isObjectEmpty, sanitizeString }
+const validateUserData = (userData) => {
+  if (!userData || typeof userData !== 'object' || Object.keys(userData).length === 0) {
+    throw new Error('Datos de usuario no válidos');
+  }
+}
+
+const isDateValid = (timestamp) =>{
+  return moment(timestamp, 'YYYY-MM-DD', true).isValid();
+}
+
+const isTimeValid = (time) =>{
+  return moment(time, 'HH:mm', true).isValid();
+}
+
+module.exports = { cleanSpaces, isEmpty, isObjectEmpty, sanitizeString, validateUserData, isDateValid, isTimeValid }
