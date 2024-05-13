@@ -27,6 +27,12 @@ $border-radius-base: $border-radius;
     }
   }
 
+  @else if $corner == 'pill' {
+    .rounded-#{$corner} {
+      @include border-radius($corner, $border-radius-base * 2)
+    }
+  }
+
   @else {
     .rounded-#{$corner} {
       @include border-radius($corner, $border-radius-base)
