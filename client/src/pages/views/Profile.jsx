@@ -206,13 +206,6 @@ const Profile = () => {
         </div>
         <div className="grid">
           <div className="grid-12 grid-lg-9 grid">
-            <div className="text-muted grid grid-12 d-lg-grid d-none mx-3 mb-2 ">
-              <div className="grid-2">Día</div>
-              <div className="grid-1 text-lg-center">Inicio</div>
-              <div className="grid-2 text-lg-center">Fin</div>
-              <div className="grid-3 text-lg-center">Tiempo Trabajado</div>
-              <div className="grid-3">Actividad Desarrollada</div>
-            </div>
             <div className="grid-12">
               {<TimePunches employee_id={1} isPostData={isFormSubmitted} />}
             </div>
@@ -220,7 +213,7 @@ const Profile = () => {
           <div className="grid-12 grid-lg-3">
             <div className="text-center sticky d-flex flex-direction-column gap-1">
               <div className="grid mb-3">
-                <div className='grid-12 text-muted mb-2'>Tiempo Extraordinario</div>
+                <div className='grid-12 text-muted mb-3 align-items-flex-end'>Tiempo Extraordinario</div>
                 <div className="grid-12 bg-container rounded border p-3">
                   <div className="d-flex flex-direction-column gap-1">
                     <div className="grid">
